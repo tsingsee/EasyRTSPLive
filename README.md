@@ -24,7 +24,7 @@ Linux上编译命令如下：
 运行时将Config.ini文件放至于可执行文件相同路径下，然后直接执行可执行程序，不用带参数。
 
 ## 下载 ##
-可执行程序下载：http://pan.baidu.com/s/1sl8qxaP
+可执行程序下载：http://pan.baidu.com/s/1gfivfGJ
 
 ## 获取更多信息 ##
 
