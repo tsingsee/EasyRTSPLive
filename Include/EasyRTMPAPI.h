@@ -27,7 +27,7 @@ typedef struct __EASY_AV_Frame
     Easy_U8     *pBuffer;			/* 数据 */
 	Easy_U32	u32TimestampSec;	/* 时间戳(秒)*/
 	Easy_U32	u32TimestampUsec;	/* 时间戳(微秒) */
-}EASY_AV_Frame;
+} EASY_AV_Frame;
 
 /* 推送事件类型定义 */
 typedef enum __EASY_RTMP_STATE_T
@@ -39,7 +39,7 @@ typedef enum __EASY_RTMP_STATE_T
     EASY_RTMP_STATE_PUSHING,                /* 推流中 */
     EASY_RTMP_STATE_DISCONNECTED,           /* 断开连接 */
     EASY_RTMP_STATE_ERROR
-}EASY_RTMP_STATE_T;
+} EASY_RTMP_STATE_T;
 
 /*
 	_frameType:		EASY_SDK_VIDEO_FRAME_FLAG/EASY_SDK_AUDIO_FRAME_FLAG/EASY_SDK_EVENT_FRAME_FLAG/...	

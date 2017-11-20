@@ -22,18 +22,18 @@
 
 #ifdef _WIN32
 #pragma comment(lib,"libEasyRTSPClient.lib")
-//#pragma comment(lib,"libEasyAACEncoder.lib")
+#pragma comment(lib,"libEasyAACEncoder.lib")
 #pragma comment(lib,"libeasyrtmp.lib")
 #endif
 
 #define MAX_RTMP_URL_LEN 256
 
 #ifdef _WIN32
-#define KEY "79397037795969576B5A73416275315970784B52532F4E535645315154476C325A53356C6547556A567778576F50394C34456468646D6C754A6B4A68596D397A595541794D4445325257467A65555268636E6470626C526C5957316C59584E35"
-#define RTSP_KEY "79393674363469576B5A73417A53525A70747379532F4E535645315154476C325A53356C65475570567778576F50394C34456468646D6C754A6B4A68596D397A595541794D4445325257467A65555268636E6470626C526C5957316C59584E35"
+#define KEY "79397037795969576B5A75416D674E617066786B792F4E535645315154476C325A53356C6547572B567778576F50394C34456468646D6C754A6B4A68596D397A595541794D4445325257467A65555268636E6470626C526C5957316C59584E35"
+#define RTSP_KEY "79393674363469576B5A73413741526170667354532F4E535645315154476C325A53356C65475570567778576F50394C34456468646D6C754A6B4A68596D397A595541794D4445325257467A65555268636E6470626C526C5957316C59584E35"
 #else // linux
-#define KEY "79397037795A4F576B596F417A53525A70747379532F64796447317762476C325A595258444661672F307667523246326157346D516D466962334E68514449774D545A4659584E355247467964326C75564756686257566863336B3D"
-#define RTSP_KEY "7939367436354F576B59714148304E5A70727A66792F64796447317762476C325A654658444661672F307667523246326157346D516D466962334E68514449774D545A4659584E355247467964326C75564756686257566863336B3D"
+#define KEY "79397037795A4F576B596F416A77646170666877532F64796447317762476C325A595258444661672F307667523246326157346D516D466962334E68514449774D545A4659584E355247467964326C75564756686257566863336B3D"
+#define RTSP_KEY "7939367436354F576B596F414D6770617066584E532F64796447317762476C325A654658444661672F307667523246326157346D516D466962334E68514449774D545A4659584E355247467964326C75564756686257566863336B3D"
 #endif
 
 #define BUFFER_SIZE  1024*1024
@@ -101,26 +101,28 @@ int __EasyRTMP_Callback(int _frameType, char *pBuf, EASY_RTMP_STATE_T _state, vo
 	return 0;
 }
 
-//int EasyInitAACEncoder(_channel_info* pChannel, RTSP_FRAME_INFO *frameinfo)
-//{
-//	if(pChannel->fPusherInfo.m_pAACEncoderHandle == NULL)
-//	{
-//		InitParam initParam;
-//		initParam.u32AudioSamplerate = 8000 /*frameinfo->sample_rate*/;
-//		initParam.ucAudioChannel =  1 /*frameinfo->channels*/;
-//		initParam.u32PCMBitSize =  16 /*frameinfo->bits_per_sample*/;
-//
-//		if(frameinfo->codec == EASY_SDK_AUDIO_CODEC_G711A)
-//			initParam.ucAudioCodec = Law_ALaw;
-//		else if(frameinfo->codec == EASY_SDK_AUDIO_CODEC_G711U)
-//			initParam.ucAudioCodec = Law_ULaw;
-//		else
-//			return -1;
-//
-//		pChannel->fPusherInfo.m_pAACEncoderHandle = Easy_AACEncoder_Init( initParam);
-//	}
-//	return 0;
-//}
+int EasyInitAACEncoder(_channel_info* pChannel, RTSP_FRAME_INFO *frameinfo)
+{
+	if(pChannel->fPusherInfo.m_pAACEncoderHandle == NULL)
+	{
+		InitParam initParam;
+		initParam.u32AudioSamplerate = frameinfo->sample_rate;
+		initParam.ucAudioChannel =  frameinfo->channels;
+		initParam.u32PCMBitSize =  frameinfo->bits_per_sample;
+
+		if(frameinfo->codec == EASY_SDK_AUDIO_CODEC_G711A)
+			initParam.ucAudioCodec = Law_ALaw;
+		else if(frameinfo->codec == EASY_SDK_AUDIO_CODEC_G711U)
+			initParam.ucAudioCodec = Law_ULaw;
+		else if(frameinfo->codec == EASY_SDK_AUDIO_CODEC_G726)
+			initParam.ucAudioCodec = Law_G726;
+		else
+			return -1;
+
+		pChannel->fPusherInfo.m_pAACEncoderHandle = Easy_AACEncoder_Init( initParam);
+	}
+	return 0;
+}
 
 /* EasyRTSPClient callback */
 int Easy_APICALL __RTSPSourceCallBack( int _chid, void *_chPtr, int _mediatype, char *pbuf, RTSP_FRAME_INFO *frameinfo)
@@ -229,38 +231,38 @@ int Easy_APICALL __RTSPSourceCallBack( int _chid, void *_chPtr, int _mediatype, 
 				pChannel->fMediainfo.u32VideoCodec, pChannel->fMediainfo.u32VideoFps, pChannel->fMediainfo.u32AudioCodec, pChannel->fMediainfo.u32AudioChannel, pChannel->fMediainfo.u32AudioSamplerate);
 		}
 	}
-	//else if (_mediatype == EASY_SDK_AUDIO_FRAME_FLAG)
-	//{
-	//	EASY_AV_Frame	avFrame;
-	//	memset(&avFrame, 0x00, sizeof(EASY_AV_Frame));
-	//	avFrame.u32AVFrameFlag = EASY_SDK_AUDIO_FRAME_FLAG;
-	//	//avFrame.u32TimestampSec = frameinfo->timestamp_sec;
-	//	//avFrame.u32TimestampUsec = frameinfo->timestamp_usec;
+	else if (_mediatype == EASY_SDK_AUDIO_FRAME_FLAG)
+	{
+		EASY_AV_Frame	avFrame;
+		memset(&avFrame, 0x00, sizeof(EASY_AV_Frame));
+		avFrame.u32AVFrameFlag = EASY_SDK_AUDIO_FRAME_FLAG;
+		//avFrame.u32TimestampSec = frameinfo->timestamp_sec;
+		//avFrame.u32TimestampUsec = frameinfo->timestamp_usec;
 
-	//	if(frameinfo->codec == EASY_SDK_AUDIO_CODEC_AAC)
-	//	{
-	//		avFrame.pBuffer = (Easy_U8*)(pbuf);
-	//		avFrame.u32AVFrameLen  = frameinfo->length;	
-	//		//printf("*");
-	//		iRet = EasyRTMP_SendPacket(pChannel->fPusherInfo.rtmpHandle, &avFrame);
-	//	}
-	//	else if ((frameinfo->codec == EASY_SDK_AUDIO_CODEC_G711A) || (frameinfo->codec == EASY_SDK_AUDIO_CODEC_G711U) || (frameinfo->codec == EASY_SDK_AUDIO_CODEC_G726))
-	//	{
-	//		if(EasyInitAACEncoder(pChannel, frameinfo) == 0)
-	//		{
-	//			memset(pChannel->fPusherInfo.m_pAACEncBufer, 0, 64*1024);
-	//			unsigned int iAACBufferLen = 0;
+		if(frameinfo->codec == EASY_SDK_AUDIO_CODEC_AAC)
+		{
+			avFrame.pBuffer = (Easy_U8*)(pbuf);
+			avFrame.u32AVFrameLen  = frameinfo->length;	
+			//printf("*");
+			iRet = EasyRTMP_SendPacket(pChannel->fPusherInfo.rtmpHandle, &avFrame);
+		}
+		else if ((frameinfo->codec == EASY_SDK_AUDIO_CODEC_G711A) || (frameinfo->codec == EASY_SDK_AUDIO_CODEC_G711U) || (frameinfo->codec == EASY_SDK_AUDIO_CODEC_G726))
+		{
+			if(EasyInitAACEncoder(pChannel, frameinfo) == 0)
+			{
+				memset(pChannel->fPusherInfo.m_pAACEncBufer, 0, 64*1024);
+				unsigned int iAACBufferLen = 0;
 
-	//			if(Easy_AACEncoder_Encode(pChannel->fPusherInfo.m_pAACEncoderHandle, (unsigned char*)pbuf,  frameinfo->length, pChannel->fPusherInfo.m_pAACEncBufer, &iAACBufferLen) > 0)
-	//			{
-	//				//printf("*");
-	//				avFrame.pBuffer = (Easy_U8*)(pChannel->fPusherInfo.m_pAACEncBufer);
-	//				avFrame.u32AVFrameLen  = iAACBufferLen;	
-	//				iRet = EasyRTMP_SendPacket(pChannel->fPusherInfo.rtmpHandle, &avFrame);
-	//			}
-	//		}
-	//	}
-	//}
+				if(Easy_AACEncoder_Encode(pChannel->fPusherInfo.m_pAACEncoderHandle, (unsigned char*)pbuf,  frameinfo->length, pChannel->fPusherInfo.m_pAACEncBufer, &iAACBufferLen) > 0)
+				{
+					//printf("*");
+					avFrame.pBuffer = (Easy_U8*)(pChannel->fPusherInfo.m_pAACEncBufer);
+					avFrame.u32AVFrameLen  = iAACBufferLen;	
+					iRet = EasyRTMP_SendPacket(pChannel->fPusherInfo.rtmpHandle, &avFrame);
+				}
+			}
+		}
+	}
 
 	return 0;
 }
