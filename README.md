@@ -1,4 +1,5 @@
-##介绍##
+## 介绍 ##
+此Demo涉及到EasyRTMP和EasyRTSPClient两个需要商业授权的SDK。
 EasyRTMP是EasyDarwin团队开发的一套夸平台的RTMP直播推送功能组件，内部集成了包括：基本RTMP协议、断线重连、异步推送、环形缓冲区、推送网络拥塞自动丢帧、缓冲区关键帧检索、事件回调(断线、音视频数据回调)，支持市面上绝大部分的RTMP流媒体服务器。详见https://github.com/EasyDarwin/EasyRTMP。
 EasyRTSPClient是一套全平台支持稳定、易用、支持重连的RTSPClient工具。能够拉取RTSP流地址并解析出视频帧和音频帧数据。详见https://github.com/EasyDarwin/EasyRTSPClient。
 两者都是支持多路同时操作的SDK库，这样就方便了我们基于他们做多路RTSP流同时转成RTMP进行推送。
@@ -13,7 +14,7 @@ EasyRTSPClient是一套全平台支持稳定、易用、支持重连的RTSPClien
 	rtsp=rtsp://admin:admin@192.168.66.222/22
 	rtmp=rtmp://www.easydss.com:10085/live/test2
 
-##编译及运行##
+## 编译及运行 ##
 Windows上使用Visual Studio 2010开发，当然各位可以改成自己的编译环境。
 Linux上编译命令如下：
 
