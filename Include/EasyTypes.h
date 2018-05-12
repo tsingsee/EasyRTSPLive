@@ -121,14 +121,14 @@ typedef struct __EASY_MEDIA_INFO_T
 	Easy_U32 u32AudioChannel;			/* 音频通道数 */
 	Easy_U32 u32AudioBitsPerSample;		/* 音频采样精度 */
 
-	Easy_U32 u32VpsLength;				/* 视频Vps帧长度 */
-	Easy_U32 u32SpsLength;				/* 视频Sps帧长度 */
-	Easy_U32 u32PpsLength;				/* 视频Pps帧长度 */
-	Easy_U32 u32SeiLength;				/* 视频Sei帧长度 */
-	Easy_U8	 u8Vps[255];				/* 视频Vps帧内容 */
-	Easy_U8	 u8Sps[255];				/* 视频Sps帧内容 */
-	Easy_U8	 u8Pps[128];				/* 视频Pps帧内容 */
-	Easy_U8	 u8Sei[128];				/* 视频Sei帧内容 */
+	Easy_U32 u32VpsLength;			/* 脢脫脝碌vps脰隆鲁陇露脠 */
+	Easy_U32 u32SpsLength;			/* 脢脫脝碌sps脰隆鲁陇露脠 */
+	Easy_U32 u32PpsLength;			/* 脢脫脝碌pps脰隆鲁陇露脠 */
+	Easy_U32 u32SeiLength;			/* 脢脫脝碌sei脰隆鲁陇露脠 */
+	Easy_U8	 u8Vps[255];			/* 脢脫脝碌vps脰隆脛脷脠脻 */
+	Easy_U8	 u8Sps[255];			/* 脢脫脝碌sps脰隆脛脷脠脻 */
+	Easy_U8	 u8Pps[128];				/* 脢脫脝碌sps脰隆脛脷脠脻 */
+	Easy_U8	 u8Sei[128];				/* 脢脫脝碌sei脰隆脛脷脠脻 */
 }EASY_MEDIA_INFO_T;
 
 /* 帧信息 */

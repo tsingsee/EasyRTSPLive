@@ -9,7 +9,7 @@
 
 #include "EasyTypes.h"
 
-#define	RTSP_PROG_NAME	"EasyRTSPClient v1.16.1028"
+#define	RTSP_PROG_NAME	"EasyRTSPClient v1.6.17.1117"
 
 /*
 	_channelId:		通道号,暂时不用
@@ -28,7 +28,11 @@ extern "C"
 	Easy_API int Easy_APICALL EasyRTSP_GetErrCode(Easy_RTSP_Handle handle);
 
 	/* 激活 */
+#ifdef ANDROID
+	Easy_API int Easy_APICALL EasyRTSP_Activate(char *license, char* userPtr);
+#else
 	Easy_API int Easy_APICALL EasyRTSP_Activate(char *license);
+#endif
 
 	/* 创建RTSPClient句柄  返回0表示成功，返回非0表示失败 */
 	Easy_API int Easy_APICALL EasyRTSP_Init(Easy_RTSP_Handle *handle);
