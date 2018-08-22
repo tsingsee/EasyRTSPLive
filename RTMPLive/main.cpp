@@ -15,25 +15,23 @@
 #include <list>
 
 #include "EasyRTSPClientAPI.h"
-#include "EasyAACEncoderAPI.h"
 #include "EasyRTMPAPI.h"
 #include "ini.h"
 #include "trace.h"
 
 #ifdef _WIN32
 #pragma comment(lib,"libEasyRTSPClient.lib")
-#pragma comment(lib,"libEasyAACEncoder.lib")
 #pragma comment(lib,"libeasyrtmp.lib")
 #endif
 
 #define MAX_RTMP_URL_LEN 256
 
 #ifdef _WIN32
-#define KEY "79397037795969576B5A754174366C6170565A48792F4E535645315154476C325A53356C6547572B567778576F50394C34456468646D6C754A6B4A68596D397A595541794D4445325257467A65555268636E6470626C526C5957316C59584E35"
-#define RTSP_KEY "79393674363469576B5A75415170646170576938792F4E535645315154476C325A53356C65475570567778576F50394C34456468646D6C754A6B4A68596D397A595541794D4445325257467A65555268636E6470626C526C5957316C59584E35"
+#define KEY "79397037795969576B5A734179445A62704D6B33532F4E535645315154476C325A53356C65475737567778576F50394C3430566863336C4559584A33615735555A57467453584E55614756435A584E30514449774D54686C59584E35"
+#define RTSP_KEY "79393674363469576B5A75417033786270494E594A664E535645315154476C325A53356C65475857567778576F502B6C3430566863336C4559584A33615735555A57467453584E55614756435A584E30514449774D54686C59584E35"
 #else // linux
-#define KEY "79397037795A4F576B5971417A71466170563477792F64796447317762476C325A654658444661672F307667523246326157346D516D466962334E68514449774D545A4659584E355247467964326C75564756686257566863336B3D"
-#define RTSP_KEY "7939367436354F576B597141464B646170566A71792F64796447317762476C325A577858444661672F307667523246326157346D516D466962334E68514449774D545A4659584E355247467964326C75564756686257566863336B3D"
+#define KEY "79397037795A4F576B596F41566E746270495370706664796447317762476C325A664658444661672F36586A5257467A65555268636E6470626C526C5957314A6331526F5A554A6C633352414D6A41784F47566863336B3D"
+#define RTSP_KEY "7939367436354F576B597141706C3962704B4259792F64796447317762476C325A556C58444661672F30766A5257467A65555268636E6470626C526C5957314A6331526F5A554A6C633352414D6A41784F47566863336B3D"
 #endif
 
 #define BUFFER_SIZE  1024*1024
@@ -45,8 +43,8 @@ typedef struct _channel_cfg_struct_t
 	int channelId;
 	int option;
 	char channelName[64];
-	char srcRtspAddr[256];
-	char destRtmpAddr[256];
+	char srcRtspAddr[512];
+	char destRtmpAddr[512];
 }_channel_cfg;
 
 typedef struct _rtmp_pusher_struct_t
@@ -55,8 +53,6 @@ typedef struct _rtmp_pusher_struct_t
 	unsigned int u32AudioCodec;	
 	unsigned int u32AudioSamplerate;
 	unsigned int u32AudioChannel;
-	EasyAACEncoder_Handle m_pAACEncoderHandle;
-	unsigned char m_pAACEncBufer[64*1024];
 }_rtmp_pusher;
 
 typedef struct _channel_info_struct_t
@@ -70,8 +66,6 @@ typedef struct _channel_info_struct_t
 }_channel_info;
 
 static std::list <_channel_info*> gChannelInfoList;
-
-static int testaddr = 5;
 
 int __EasyRTMP_Callback(int _frameType, char *pBuf, EASY_RTMP_STATE_T _state, void *_userPtr)
 {
@@ -98,29 +92,6 @@ int __EasyRTMP_Callback(int _frameType, char *pBuf, EASY_RTMP_STATE_T _state, vo
 		break;
 	}
 
-	return 0;
-}
-
-int EasyInitAACEncoder(_channel_info* pChannel, RTSP_FRAME_INFO *frameinfo)
-{
-	if(pChannel->fPusherInfo.m_pAACEncoderHandle == NULL)
-	{
-		InitParam initParam;
-		initParam.u32AudioSamplerate = frameinfo->sample_rate;
-		initParam.ucAudioChannel =  frameinfo->channels;
-		initParam.u32PCMBitSize =  frameinfo->bits_per_sample;
-
-		if(frameinfo->codec == EASY_SDK_AUDIO_CODEC_G711A)
-			initParam.ucAudioCodec = Law_ALaw;
-		else if(frameinfo->codec == EASY_SDK_AUDIO_CODEC_G711U)
-			initParam.ucAudioCodec = Law_ULaw;
-		else if(frameinfo->codec == EASY_SDK_AUDIO_CODEC_G726)
-			initParam.ucAudioCodec = Law_G726;
-		else
-			return -1;
-
-		pChannel->fPusherInfo.m_pAACEncoderHandle = Easy_AACEncoder_Init( initParam);
-	}
 	return 0;
 }
 
@@ -231,38 +202,6 @@ int Easy_APICALL __RTSPSourceCallBack( int _chid, void *_chPtr, int _mediatype, 
 				pChannel->fMediainfo.u32VideoCodec, pChannel->fMediainfo.u32VideoFps, pChannel->fMediainfo.u32AudioCodec, pChannel->fMediainfo.u32AudioChannel, pChannel->fMediainfo.u32AudioSamplerate);
 		}
 	}
-	else if (_mediatype == EASY_SDK_AUDIO_FRAME_FLAG)
-	{
-		EASY_AV_Frame	avFrame;
-		memset(&avFrame, 0x00, sizeof(EASY_AV_Frame));
-		avFrame.u32AVFrameFlag = EASY_SDK_AUDIO_FRAME_FLAG;
-		//avFrame.u32TimestampSec = frameinfo->timestamp_sec;
-		//avFrame.u32TimestampUsec = frameinfo->timestamp_usec;
-
-		if(frameinfo->codec == EASY_SDK_AUDIO_CODEC_AAC)
-		{
-			avFrame.pBuffer = (Easy_U8*)(pbuf);
-			avFrame.u32AVFrameLen  = frameinfo->length;	
-			//printf("*");
-			iRet = EasyRTMP_SendPacket(pChannel->fPusherInfo.rtmpHandle, &avFrame);
-		}
-		else if ((frameinfo->codec == EASY_SDK_AUDIO_CODEC_G711A) || (frameinfo->codec == EASY_SDK_AUDIO_CODEC_G711U) || (frameinfo->codec == EASY_SDK_AUDIO_CODEC_G726))
-		{
-			if(EasyInitAACEncoder(pChannel, frameinfo) == 0)
-			{
-				memset(pChannel->fPusherInfo.m_pAACEncBufer, 0, 64*1024);
-				unsigned int iAACBufferLen = 0;
-
-				if(Easy_AACEncoder_Encode(pChannel->fPusherInfo.m_pAACEncoderHandle, (unsigned char*)pbuf,  frameinfo->length, pChannel->fPusherInfo.m_pAACEncBufer, &iAACBufferLen) > 0)
-				{
-					//printf("*");
-					avFrame.pBuffer = (Easy_U8*)(pChannel->fPusherInfo.m_pAACEncBufer);
-					avFrame.u32AVFrameLen  = iAACBufferLen;	
-					iRet = EasyRTMP_SendPacket(pChannel->fPusherInfo.rtmpHandle, &avFrame);
-				}
-			}
-		}
-	}
 
 	return 0;
 }
@@ -305,12 +244,6 @@ void ReleaseSpace(void)
 			EasyRTSP_Deinit(&(pChannel->fNVSHandle));
 			pChannel->fNVSHandle = NULL;
 		}
-
-	/*	if (NULL != pChannel->fPusherInfo.m_pAACEncoderHandle)
-		{
-			Easy_AACEncoder_Release(pChannel->fPusherInfo.m_pAACEncoderHandle);
-			pChannel->fPusherInfo.m_pAACEncoderHandle = NULL;
-		}*/
 
 		if (NULL != pChannel->fPusherInfo.rtmpHandle)
 		{

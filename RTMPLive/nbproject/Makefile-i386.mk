@@ -54,7 +54,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-L/usr/lib/i386-linux-gnu -L../Lib/${CND_CONF} -LlibEasyRTSPClient/Lib/${CND_CONF} -L../Lib/EasyAACEncoder/${CND_CONF}
+LDLIBSOPTIONS=-L/usr/lib/i386-linux-gnu -L../Lib/${CND_CONF} -LlibEasyRTSPClient/Lib/${CND_CONF}
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -62,7 +62,7 @@ LDLIBSOPTIONS=-L/usr/lib/i386-linux-gnu -L../Lib/${CND_CONF} -LlibEasyRTSPClient
 
 ${CND_CONF}/rtmplive: ${OBJECTFILES}
 	${MKDIR} -p ${CND_CONF}
-	${LINK.cc} -o ${CND_CONF}/rtmplive ${OBJECTFILES} ${LDLIBSOPTIONS} -leasyrtmp -leasyrtspclient -leasyaacencoder -pthread -lrt
+	${LINK.cc} -o ${CND_CONF}/rtmplive ${OBJECTFILES} ${LDLIBSOPTIONS} -leasyrtmp -leasyrtspclient -pthread -lrt
 
 ${OBJECTDIR}/ini.o: ini.cpp
 	${MKDIR} -p ${OBJECTDIR}
