@@ -8,11 +8,11 @@ EasyRTSPClient是一套全平台支持稳定、易用、支持重连的RTSPClien
 
     [channel0]
 	rtsp=rtsp://admin:admin@192.168.66.222/11
-	rtmp=rtmp://www.easydss.com:10085/live/test1
+	rtmp=rtmp://demo.easydss.com:10085/live/test1
 	option=1
 	[channel1]
 	rtsp=rtsp://admin:admin@192.168.66.222/22
-	rtmp=rtmp://www.easydss.com:10085/live/test2
+	rtmp=rtmp://demo.easydss.com:10085/live/test2
 
 ## 编译及运行 ##
 Windows上使用Visual Studio 2010开发，当然各位可以改成自己的编译环境。
