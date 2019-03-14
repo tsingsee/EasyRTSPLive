@@ -4,4 +4,8 @@
     <LocalDebuggerEnvironment>path=%path%;..\Lib;.\libEasyRTSPClient\Lib\;</LocalDebuggerEnvironment>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LocalDebuggerEnvironment>path=%path%;..\Lib;.\libEasyRTSPClient\Lib\;</LocalDebuggerEnvironment>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
 </Project>
