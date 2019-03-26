@@ -1,0 +1,10 @@
+*/Debug/*
+*/Release/*
+*.log
+*.sdf
+*.opensdf
+*.pdb
+*.ipch
+*.ilk
+/Debug/*
+/Release/*
