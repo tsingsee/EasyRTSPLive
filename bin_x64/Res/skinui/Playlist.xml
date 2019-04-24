@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="226,480">
+    <VerticalLayout name="ctnPlaylist" bkcolor="#FF111111">
+        <HorizontalLayout height="28">
+            <Button name="btnFont" float="true" pos="3,0,0,0" width="27" height="27" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;btn_font.png&apos; source=&apos;0,0,27,27&apos;" hotimage="file=&apos;btn_font.png&apos; source=&apos;28,0,55,27&apos;" pushedimage="file=&apos;btn_font.png&apos; source=&apos;56,0,83,27&apos;" />
+            <Edit   name="editSearch" text="请输入搜索关键词" float="true" pos="30,0,0,0" width="193" height="27"  font="3" textpadding="9,3,23,3" bordersize="1" focusbordercolor="#FF154B83" nativebkcolor="#FF0E0E0E" bkcolor="#FF242527" textcolor="#FF4B4F51" disabledtextcolor="#FFA7A6AA" />
+            <Button name="btnSearch" float="true" pos="201,0,0,0" width="23" height="27" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;btn_search.png&apos; source=&apos;0,0,18,18&apos; dest='0,4,18,22' " hotimage="file=&apos;btn_search.png&apos; source=&apos;19,0,37,18&apos; dest='0,4,18,22' " pushedimage="file=&apos;btn_search.png&apos; source=&apos;38,0,56,18&apos; dest='0,4,18,22' " />
+        </HorizontalLayout>
+		<TreeView name="treePlaylist" childpadding="4" multipleitem="true" inset="4,0,3,0" bordersize="1" bordercolor="#FF2B2B2B" itemtextcolor="#FFC8C6CB" itemhottextcolor="#FFC8C6CB" selitemtextcolor="#FFC8C6CB" itemhotbkcolor="#FF1B1B1B" itemselectedbkcolor="#FF151C2C" vscrollbar="true" hscrollbar="true" >
+			<TreeNode name="nodePlaylist" text="播放列表" height="33" bkimage="treeview_header.png" itemattr="valign=&quot;vcenter&quot; font=&quot;1&quot; textpadding=&quot;12,0,0,0&quot;" folderattr="width=&quot;0&quot; float=&quot;true&quot;">
+    			<TreeNode height="34" folderattr="width=&quot;0&quot; float=&quot;true&quot;">
+                    <Combo name="comboPlaylist" float="true" pos="12,7,0,0" valign="vcenter" width="70" height="20" dropboxsize="63,63" itemfont="0" itemtextcolor="#FFC8C6CB" itemselectedtextcolor="#FFC8C6CB" itemhottextcolor="#FFC8C6CB" itembkcolor="#FF2E2E2E" itemselectedbkcolor="#FF2E2E2E" itemhotbkcolor="#FF191919" normalimage="file='combo_right.png' source='0,0,20,20' dest='27,0,47,20' " hotimage="file='combo_right.png' source='21,0,41,20' dest='27,0,47,20' ">
+                        <ListLabelElement text="全部" font="0"/>
+                        <ListLabelElement text="在线" font="0"/>
+                        <ListLabelElement text="本地" font="0" selected="true" />
+                    </Combo>
+                    <VerticalLayout width="65">
+                        <Button name="btnPlayMode" tooltip="播放模式" float="true" pos="0,8,0,0" width="18" height="18" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;btn_play_mode.png&apos; source=&apos;0,0,18,18&apos;" hotimage="file=&apos;btn_play_mode.png&apos; source=&apos;19,0,37,18&apos;" pushedimage="file=&apos;btn_play_mode.png&apos; source=&apos;38,0,56,18&apos;" />
+                        <Button name="btnAdd" float="true" pos="21,8,0,0" width="18" height="18" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;btn_add.png&apos; source=&apos;0,0,18,18&apos;" hotimage="file=&apos;btn_add.png&apos; source=&apos;19,0,37,18&apos;" pushedimage="file=&apos;btn_add.png&apos; source=&apos;38,0,56,18&apos;" />
+                        <Button name="btnDelete" float="true" pos="42,8,0,0" width="18" height="18" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;btn_delete.png&apos; source=&apos;0,0,18,18&apos;" hotimage="file=&apos;btn_delete.png&apos; source=&apos;19,0,37,18&apos;" pushedimage="file=&apos;btn_delete.png&apos; source=&apos;38,0,56,18&apos;" />
+                    </VerticalLayout>
+				</TreeNode>
+			    <TreeNode text="迅雷下载" inset="-8,0,0,0" height="22" itemattr="valign=&quot;vcenter&quot; font=&quot;0&quot; textpadding=&quot;4,0,0,0&quot;" folderattr="padding=&quot;0,5,0,0&quot; width=&quot;12&quot; height=&quot;12&quot; selectedimage=&quot;file='treeview_expand.png' source='0,0,12,12' &quot; normalimage=&quot;file='treeview_expand.png' source='13,0,25,12' &quot;">
+    				<TreeNode text="下载1" height="22" inset="7,0,0,0" itemattr="valign=&quot;vcenter&quot; font=&quot;4&quot;" folderattr="width=&quot;0&quot; float=&quot;true&quot;"/>					    			
+    				<TreeNode text="下载2" height="22" inset="7,0,0,0" itemattr="valign=&quot;vcenter&quot; font=&quot;4&quot;" folderattr="width=&quot;0&quot; float=&quot;true&quot;"/>					    			
+				</TreeNode>
+			</TreeNode>
+			<TreeNode text="在线媒体" height="33" bkimage="treeview_header.png" itemattr="valign=&quot;vcenter&quot; font=&quot;1&quot; textpadding=&quot;12,0,0,0&quot;" folderattr="width=&quot;0&quot; float=&quot;true&quot;">
+			    <TreeNode text="今日热播" inset="-8,0,0,0" height="22" itemattr="valign=&quot;vcenter&quot; font=&quot;0&quot; textpadding=&quot;4,0,0,0&quot;" folderattr="padding=&quot;0,5,0,0&quot; width=&quot;12&quot; height=&quot;12&quot; selectedimage=&quot;file='treeview_expand.png' source='0,0,12,12' &quot; normalimage=&quot;file='treeview_expand.png' source='13,0,25,12' &quot;">
+    				<TreeNode text="八公" height="22" inset="7,0,0,0" itemattr="valign=&quot;vcenter&quot; font=&quot;4&quot;" folderattr="width=&quot;0&quot; float=&quot;true&quot;"/>					    			
+    				<TreeNode text="HACHI" height="22" inset="7,0,0,0" itemattr="valign=&quot;vcenter&quot; font=&quot;4&quot;" folderattr="width=&quot;0&quot; float=&quot;true&quot;"/>					    			
+				</TreeNode>
+			    <TreeNode text="热点新闻" inset="-8,0,0,0" height="22" itemattr="valign=&quot;vcenter&quot; font=&quot;0&quot; textpadding=&quot;4,0,0,0&quot;" folderattr="padding=&quot;0,5,0,0&quot; width=&quot;12&quot; height=&quot;12&quot; selectedimage=&quot;file='treeview_expand.png' source='0,0,12,12' &quot; normalimage=&quot;file='treeview_expand.png' source='13,0,25,12' &quot;">
+    				<TreeNode text="八公" height="22" inset="7,0,0,0" itemattr="valign=&quot;vcenter&quot; font=&quot;4&quot;" folderattr="width=&quot;0&quot; float=&quot;true&quot;"/>					    			
+    				<TreeNode text="HACHI" height="22" inset="7,0,0,0" itemattr="valign=&quot;vcenter&quot; font=&quot;4&quot;" folderattr="width=&quot;0&quot; float=&quot;true&quot;"/>					    			
+				</TreeNode>
+			</TreeNode>
+			<TreeNode text="娱乐中心" height="33" bkimage="treeview_header.png" itemattr="valign=&quot;vcenter&quot; font=&quot;1&quot; textpadding=&quot;12,0,0,0&quot;" folderattr="width=&quot;0&quot; float=&quot;true&quot;">
+			    <TreeNode text="短视频广场" inset="-8,0,0,0" height="22" itemattr="valign=&quot;vcenter&quot; font=&quot;0&quot; textpadding=&quot;4,0,0,0&quot;" folderattr="padding=&quot;0,5,0,0&quot; width=&quot;12&quot; height=&quot;12&quot; selectedimage=&quot;file='treeview_expand.png' source='0,0,12,12' &quot; normalimage=&quot;file='treeview_expand.png' source='13,0,25,12' &quot;">
+    				<TreeNode text="热门视频" height="22" inset="7,0,0,0" itemattr="valign=&quot;vcenter&quot; font=&quot;4&quot;" folderattr="width=&quot;0&quot; float=&quot;true&quot;"/>					    			
+    				<TreeNode text="美女视频" height="22" inset="7,0,0,0" itemattr="valign=&quot;vcenter&quot; font=&quot;4&quot;" folderattr="width=&quot;0&quot; float=&quot;true&quot;"/>					    			
+				</TreeNode>
+    		    <TreeNode text="直播频道" height="22" inset="8,0,0,0" itemattr="valign=&quot;vcenter&quot; font=&quot;0&quot;" folderattr="width=&quot;0&quot; float=&quot;true&quot;"/>					    			
+			</TreeNode>
+		</TreeView>
+    </VerticalLayout>
+</Window>

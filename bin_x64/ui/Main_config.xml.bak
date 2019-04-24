@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window size="1200,800" clip="true" Resizing="true" DragMoving="true" bkcolor="#503013" mininfo="1080,600" roundcorner="2,2">
+	<Font name="幼圆" size="20" bold="true"/>
+	<Font name="微软雅黑" size="15" italic="false" bold="false"/>
+	<Font name="微软雅黑" size="24" bold="false" />
+	<Font name="微软雅黑" size="13" bold="false" />
+	<Font name="微软雅黑" size="16" bold="false" />
+
+	<String text="EasyRTMPLive流媒体转发管理服务" font="3" color="#E3AF7A" pos="0,0,12,10,680,44" id="1"/>
+	<!--<String text="EasyRTMPLive stream relay management server" font="4" color="#E3AF7A" pos="0,0,90,42,680,70" id="2"/>	-->
+	<String text="Copyright©成都柚灵科技 2019 版权所有" font="2" color="#E3AF7A" pos="3,3,300,30,0,0" id="3"/>
+
+	<Button pos="3,3,650,40,300,0" type="push" id="5005"  font="2" fontnormalcolor="#E3AF7A" fontselcolor="#FF00FF" trans="true" text="商务联系：sword@easydarwin.org" url="sword@easydarwin.org"/>
+	
+	<!--	
+	<Image path="Res\EasyTeam\EasyPlayer_pro_64.png" pos="0,0,12,10,76,74" id="1" />
+
+	<Image path="Res\Pic\线分割.png" pos="1,1,152,5,148,25" id="2" />	
+	-->
+	<!--
+	<Button pos="1,1,35,0,8,22" type="push" id="5000" normalimage="Res\Button\close_normal.png" hotimage="Res\Button\close_hover.png" pushedimage="Res\Button\close_pressed.png" focusedimage="Res\Button\close_normal.png" size="27,22" trans="true"/>
+
+	<Button pos="1,1,62,0,35,22" type="push" id="5001" normalimage="Res\Button\min_normal.png" hotimage="Res\Button\min_hover.png" pushedimage="Res\Button\min_pressed.png" focusedimage="Res\Button\min_normal.png" size="27,22" trans="true"/>
+	-->
+	<Button keyname="Close" pos="1,1,39,0,0,20" type="push" id="5000" normalimage="Res\Button\btn_close_normal.png" hotimage="Res\Button\btn_close_highlight.png" pushedimage="Res\Button\btn_close_down.png" focusedimage="Res\Button\btn_close_normal.png" size="39,20" trans="true"/>
+	<Button keyname="Min" pos="1,1,95,0,67,20" type="push" id="5001" normalimage="Res\Button\btn_mini_normal.png" hotimage="Res\Button\btn_mini_highlight.png" pushedimage="Res\Button\btn_mini_down.png" focusedimage="Res\Button\btn_mini_normal.png" size="28,20" trans="true"/>
+	<Button keyname="Max" pos="1,1,67,0,39,20" type="push" id="5002" normalimage="Res\Button\btn_max_normal.png" hotimage="Res\Button\btn_max_highlight.png" pushedimage="Res\Button\btn_max_down.png" focusedimage="Res\Button\btn_max_normal.png" size="28,20" trans="true"/>
+
+<!--
+	<Button keyname="Logout" pos="1,1,148,0,100,30"  text="退出" type="push" id="5005" ormalimage="Res\Button\LableN.png" hotimage="Res\Button\LableN.png" pushedimage="Res\Button\LableN.png" focusedimage="Res\Button\LableN.png" iconimage="" size="20,30" fontnormalcolor="#E3AF7A" fontselcolor="#FF7F4A" trans="true"/>
+
+	<Button keyname="Loginuser" pos="1,1,280,0,152,30" type="push" id="5006" iconimage="Res\Main\icon_contacts_normal.png" fontnormalcolor="#E3AF7A" fontselcolor="#FF7F4A" trans="true" text="" url=""/>
+-->
+
+	<Button keyname="PanoMonitor" pos="1,1,240,36,130,76" type="icon" id="6000" normalimage="Res\Button\tab_btn.png" hotimage="Res\Button\tab_btn.png" pushedimage="Res\Button\tab_btn.png" focusedimage="Res\Button\tab_btn.png" iconimage="Res\Pic\视频回放_icon_1.png" text="转发任务" fontnormalcolor="#E3AF7A" fontselcolor="#FF7F4A" size="110,40" trans="true"/>
+<!--
+	<Button keyname="RecordPlayback" pos="1,1,355,36,245,76" type="icon" id="6001" normalimage="Res\Button\tab_btn.png" hotimage="Res\Button\tab_btn.png" pushedimage="Res\Button\tab_btn.png" focusedimage="Res\Button\tab_btn.png" iconimage="Res\Pic\视频回放_icon_1.png" text="录像回放" size="110,40" trans="true"/>
+
+	<Button keyname="GIS2DMap" pos="1,1,240,36,130,76" type="icon" id="6002" normalimage="Res\Button\tab_btn.png" hotimage="Res\Button\tab_btn.png" pushedimage="Res\Button\tab_btn.png" focusedimage="Res\Button\tab_btn.png" iconimage="Res\Pic\电子地图_icon_1.png" text="电子地图" size="110,40" trans="true"/>
+-->
+	<Button keyname="SystemSeting" pos="1,1,125,36,15,76" type="icon" id="6003" normalimage="Res\Button\tab_btn.png" hotimage="Res\Button\tab_btn.png" pushedimage="Res\Button\tab_btn.png" focusedimage="Res\Button\tab_btn.png" iconimage="Res\Pic\系统设置_icon_1.png" text="系统设置" size="110,40" trans="true"/>
+
+<!--
+	<ComBox keyname="SplitMode" defaulttext="" pos="2,2,232,34,380,30" id="6001" arrownormalimg="Res\ComboBox\login_inputbtn_normal.png" arrowhotimg="Res\ComboBox\login_inputbtn_highlight.png" arrowpushimg="Res\ComboBox\login_inputbtn_down.png" arrowwidth="24" boxheight="26" textcolor="#FF0000" trans="true">
+		<normalimage value="Res\ComboBox\frameBorderEffect_normalDraw.png" ninepart="3,3,3,3"/>
+		<hotimage value="Res\ComboBox\frameBorderEffect_mouseDownDraw.png" ninepart="3,3,3,3"/>
+		<ListBox selectimage="Res\ComboBox\listitem_select.png" ninepart="3,3,3,3" framecolor="#C08D37"/>
+		<item text="摄像头采集"/>
+		<item text="屏幕采集"/>
+	</ComBox>
+-->
+
+<!--
+	<Button pos="3,3,240,25,120,0" type="push" id="5045" fontnormalcolor="#FFFFFF" fontselcolor="#FF00FF" trans="true" text="©EasyDarwin" url="http://www.easydarwin.org/"/>
+	<Button pos="3,3,120,25,0,0" type="push" id="5046" fontnormalcolor="#FFFFFF" fontselcolor="#FF00FF" trans="true" text="Follow Github" url="https://github.com/EasyDarwin/EasyPlayer"/>
+-->
+<!--
+	<Edit id="5100" pos="2,3,5,100,5,30" defaulttext="">
+		<bknormalimg value="Res\Edit\frameBorderEffect_normalDraw.png" ninepart="2,2,2,2"/>
+		<bkhotimg value="Res\Edit\frameBorderEffect_mouseDownDraw.png" ninepart="2,2,2,2"/>
+	</Edit>
+
+	<MulitiEdit id="5100" text="" pos="2,3,5,100,5,30"  multiline="true" clientpos="3,3" scrollimage="Res\Scroll\SKIN_SCROLL.bmp"> 
+		<bknormalimg value="Res\Edit\frameBorderEffect_normalDraw.png" ninepart="2,2,2,2"/>
+		<bkhotimg value="Res\Edit\frameBorderEffect_mouseDownDraw.png" ninepart="2,2,2,2"/>
+	</MulitiEdit>
+-->
+
+
+</Window>	

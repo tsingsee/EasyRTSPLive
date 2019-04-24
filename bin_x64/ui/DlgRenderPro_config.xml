@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Window size="800,600" clip="true" Resizing="false" DragMoving="false" bkcolor="#000000" mininfo="0,0" roundcorner="0,0">
+
+	<Font name="幼圆" size="18" bold="true"/>
+	<Font name="微软雅黑" size="12" italic="false"/>
+	<Font name="微软雅黑" size="14" bold="true"/>
+
+</Window>	

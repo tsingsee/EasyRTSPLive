@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window size="900,228" clip="true" Resizing="false" DragMoving="false" bkcolor="#432713" mininfo="8,6" roundcorner="0,0">
+	<Font name="幼圆" size="20" bold="true"/>
+	<Font name="微软雅黑" size="18" italic="true"/>
+	<Font name="微软雅黑" size="18" />
+
+	<String text="" font="5" color="#E3AF7A" pos="2,2,3,180,75,153" id="1"/>
+
+<!--
+	<ListBox keyname="PanoList" pos="0,2,1,1,220,201" scrollimage="Res\Scroll\SKIN_SCROLL.bmp" id="5010" bkcolor="#200A00" itemheight="30">
+		<bknormalimage value="Res\Edit\bgPic.png" ninepart="3,3,3,3"/> 
+		<selectimage value="Res\ComboBox\listitem_select.png" ninepart="3,3,3,3"/>
+		<hovenimage value="Res\ListBox\highlight.png" ninepart="3,3,3,3"/>	
+
+	</ListBox>
+
+	<ListCtrl keyname="RecordInfoList" pos="2,3,222,200,1,2" scrollimage="Res\Scroll\SKIN_SCROLL.bmp" id="5011" itemheight="30" bkcolor="#200A00">
+		<headbkimage value="Res\ListCtrl\folder_nav_item_bg_hover_b3.png" ninepart="2,2,2,2"/>
+		<headpressimage value="Res\ListCtrl\folder_nav_item_bg_pressed_b.png" ninepart="2,2,2,2"/>
+		<headgirdimage value="Res\ListCtrl\category_sep.png"/>
+		
+		<hovenimage value="Res\ListCtrl\item_bg_hover_b1.png" ninepart="2,2,2,2"/>		
+		<selectimage value="Res\ListCtrl\item_bg_selected_b.png" ninepart="2,2,2,2"/>		
+	</ListCtrl>
+
+	<ComBox keyname="SelectDevice" defaulttext="请选择设备" pos="2,2,75,183,220,153" id="5012" droplist="true" arrownormalimg="Res\ComboBox\login_inputbtn_highlight.png" arrowhotimg="Res\ComboBox\login_inputbtn_highlight.png" arrowpushimg="Res\ComboBox\login_inputbtn_down.png" arrowwidth="23" boxheight="25" textcolor="#E3AF7A" bkcolor="#321A0E" framecolor="#C08D37" trans="true">
+		<normalimage value="Res\ComboBox\frameBorderEffect_normalDraw_b.png" ninepart="3,3,3,3"/>
+		<hotimage value="Res\ComboBox\frameBorderEffect_mouseDownDraw_b.png" ninepart="3,3,3,3"/>
+	</ComBox>
+-->
+	<Button keyname="AutoRelay" pos="0,0,100,30,650,60" type="check" id="5101" text="启动软件后自动转发流" checkimgnormal="Res\CheckBox\checkbox_blue_normal.png" checkimghot="Res\CheckBox\checkbox_blue_highlight.png" checkimgtickn="Res\CheckBox\checkbox_blue_tick_normal.png" checkimgtickh="Res\CheckBox\checkbox_blue_tick_highlight.png" size="62,33" trans="true" textcolor="#E3AF7A"/>
+
+	<Button keyname="AutoStart" pos="0,0,100,70,650,100" type="check" id="5100" checkimgnormal="Res\CheckBox\checkbox_blue_normal.png" checkimghot="Res\CheckBox\checkbox_blue_highlight.png" checkimgtickn="Res\CheckBox\checkbox_blue_tick_normal.png" checkimgtickh="Res\CheckBox\checkbox_blue_tick_highlight.png" text="随系统开机自启动软件" fontnormalcolor="#E3AF7A" fontselcolor="#FF7F4A" size="120,15" trans="true"/>
+
+
+	<Button keyname="MinimizeToTray" pos="0,0,100,110,650,140" type="check" id="5102" text="最小化到托盘" checkimgnormal="Res\CheckBox\checkbox_blue_normal.png" checkimghot="Res\CheckBox\checkbox_blue_highlight.png" checkimgtickn="Res\CheckBox\checkbox_blue_tick_normal.png" checkimgtickh="Res\CheckBox\checkbox_blue_tick_highlight.png" size="62,33" trans="true" textcolor="#E3AF7A"/>
+
+</Window>	
