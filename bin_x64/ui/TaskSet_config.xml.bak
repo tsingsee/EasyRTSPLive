@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window size="800,500" clip="true" Resizing="false" DragMoving="true" bkcolor="#503013" mininfo="80,60" roundcorner="0,0">
+	<Font name="幼圆" size="20" bold="true"/>
+	<Font name="微软雅黑" size="16" italic="true"/>
+	<Font name="微软雅黑" size="15" />
+
+
+	<String text="请输入转发目标地址" font="2" color="#E3AF7A" pos="0,0,10,5,300,40" id="1"/>
+
+	<String text="数据源名称" font="2" color="#E3AF7A" pos="0,0,50,65,150,100" id="2"/>
+	<String text="数据源URL" font="2" color="#E3AF7A" pos="0,0,50,110,150,140" id="3"/>
+	<String text="转发URL" font="2" color="#E3AF7A" pos="0,0,50,150,150,180" id="4"/>
+	<String text="URL格式示例: " font="2" color="#E3AF7A" pos="0,0,50,190,800,220" id="5"/>
+	<String text="rtmp://demo.easydss.com:10085/hls/sword" font="4" color="#E3AF7A" pos="0,0,50,230,800,260" id="6"/>
+	<!--
+	<String text="rtmp://live.hkstv.hk.lxdns.com/live/hks2" font="4" color="#E3AF7A" pos="0,0,50,220,800,240" id="6"/>
+	<String text="rtsp://admin:admin@192.168.0.100:554/h264/ch1/main/av_stream" font="4" color="#E3AF7A" pos="0,0,50,250,800,270" id="7"/>
+	<String text="udp://@234.4.5.6:8000" font="4" color="#E3AF7A" pos="0,0,50,280,800,300" id="8"/>
+	<String text="http://www.easydss.com:8000/media.mp4" font="4" color="#E3AF7A" pos="0,0,50,310,800,330" id="9"/>
+	<String text="mms://192.168.168.0.100/live1" font="4" color="#E3AF7A" pos="0,0,50,340,800,360" id="10"/>
+	<String text="rtsp://184.72.239.149/vod/mp4://BigBuckBunny_175k.mov" font="4" color="#E3AF7A" pos="0,0,50,370,800,390" id="11"/>	
+	-->
+	<Button pos="1,1,35,0,8,22" type="push" id="5000" normalimage="Res\Button\close_normal.png" hotimage="Res\Button\close_hover.png" pushedimage="Res\Button\close_pressed.png" focusedimage="Res\Button\close_normal.png" size="27,22" trans="true"/>
+	<!--
+	<Button pos="1,1,62,0,35,22" type="push" id="5001" normalimage="Res\Button\min_normal.png" hotimage="Res\Button\min_hover.png" pushedimage="Res\Button\min_pressed.png" focusedimage="Res\Button\min_normal.png" size="27,22" trans="true"/>
+	-->
+
+	<Edit keyname="SourceName" id="5100" pos="0,0,150,65,320,93" defaulttext="" bkcolor="#321A0E">
+		<bknormalimg value="Res\Edit\mainframe_b.png" ninepart="2,2,2,2"/>
+		<bkhotimg value="Res\Edit\frameBorderEffect_mouseDownDraw.png" ninepart="1,1,1,1"/>
+	</Edit>
+
+	<Edit keyname="SourceURL" id="5101" pos="0,0,150,110,720,138" defaulttext="" bkcolor="#321A0E">
+		<bknormalimg value="Res\Edit\mainframe_b.png" ninepart="2,2,2,2"/>
+		<bkhotimg value="Res\Edit\frameBorderEffect_mouseDownDraw.png" ninepart="1,1,1,1"/>
+	</Edit>
+
+	<Edit keyname="DestURL" id="5102" pos="0,0,150,155,720,183" defaulttext="" bkcolor="#321A0E">
+		<bknormalimg value="Res\Edit\mainframe_b.png" ninepart="2,2,2,2"/>
+		<bkhotimg value="Res\Edit\frameBorderEffect_mouseDownDraw.png" ninepart="1,1,1,1"/>
+	</Edit>
+
+	<Button keyname="OK" pos="3,3,190,55,110,25" type="push" id="6001" text="确定" normalimage="Res\Button\btn_cmn_normal_b.png" hotimage="Res\Button\btn_cmn_focus_b.png" pushedimage="Res\Button\btn_cmn_press_b.png" focusedimage="Res\Button\btn_cmn_normal_b.png" size="80,20" trans="true" textcolor="#E3AF7A"/>
+
+	<Button keyname="Cancel" pos="3,3,90,55,10,25" type="push" id="6002" text="取消" normalimage="Res\Button\btn_cmn_normal_b.png" hotimage="Res\Button\btn_cmn_focus_b.png" pushedimage="Res\Button\btn_cmn_press_b.png" focusedimage="Res\Button\btn_cmn_normal_b.png" size="80,20" trans="true" textcolor="#E3AF7A"/>
+<!--		
+	<String text="APES_client" font="1" color="#FFFFFF" pos="0,0,40,7,300,42" id="1"/>
+
+	<String text="Version: 1.2.16.1111 Powered by SwordTwelve/Gavin QQ交流群：544917793" font="2" color="#FFFFFF" pos="3,3,810,25,0,0" id="2"/>
+	<String text="Log" font="3" color="#000000" pos="3,3,40,125,5,105" id="3"/>
+
+	<Image path="Res\Skin\header.png" pos="0,3,0,0,0,0" id="1"/>
+
+	<Image path="Res\EasyTeam\Easy_32.png" pos="0,0,4,2,36,34" id="2" />
+
+	<Image path="Res\MainUI\logo2.png" pos="0,0,2,2,282,50" id="2" />
+-->
+
+
+
+</Window>	

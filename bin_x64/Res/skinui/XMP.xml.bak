@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="968,600" sizebox="4,4,4,4" caption="0,0,0,-1" mininfo="600,400">
+    <Font name="微软雅黑" size="14" bold="false" italic="false" />
+    <Font name="微软雅黑" size="14" bold="true" italic="false" />
+    <Font name="微软雅黑" size="10" bold="false" />
+    <Font name="微软雅黑" size="12" bold="false" />
+    <Font name="微软雅黑" size="13" bold="false" />
+	<Include source="scrollbar.xml" />
+    <VerticalLayout bkcolor="#FF070707">
+        <Caption height="40" />
+        <TabLayout name="tabCaption">
+            <HorizontalLayout>
+                <Playlist  width="225"/>
+                <VerticalLayout>
+                    <HorizontalLayout name="ctnURL" height="26" inset="0, 0, 1, 0">
+                        <Edit   name="editURL" text="请输入播放地址" font="3" textpadding="10,0,8,0" bordersize="1" focusbordercolor="#FF154B83" nativebkcolor="#FF0E0E0E" bkcolor="#FF0E0E0E" textcolor="#FF4B4F51" disabledtextcolor="#FFA7A6AA" />
+                        <Button name="btnRefresh" width="23" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;btn_refresh.png&apos; source=&apos;0,0,18,18&apos; dest='1,4,19,22' " hotimage="file=&apos;btn_refresh.png&apos; source=&apos;19,0,37,18&apos; dest='1,4,19,22' " pushedimage="file=&apos;btn_refresh.png&apos; source=&apos;38,0,56,18&apos; dest='1,4,19,22' " />
+                    </HorizontalLayout>
+                    <HorizontalLayout name="ctnClient"> <!-- 由于Layout控件都是Container的子类，所以Layout控件可以直接代替Container -->
+                        <VerticalLayout />
+                        <VerticalLayout width="336">
+                            <HorizontalLayout />
+                            <HorizontalLayout height="290">
+                                <Control float="true" pos="0,0,0,0" width="336" height="260" bkimage="file=&apos;bk_logo_light.png&apos; source=&apos;8,8,120,120&apos; " />
+                                <Control float="true" pos="0,26,0,0" width="336" height="164" bkimage="bk_logo_image.png" />
+                                <Control float="true" pos="87,62,0,0" width="168" height="20" bkimage="bk_logo_text.png" />
+                                <Button name="btnOpen" float="true" pos="72,228,0,0" width="158" height="40" bkimage="file=&apos;btn_bk.png&apos;" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" pushedimage="file=&apos;btn_open.png&apos; source=&apos;0,0,88,20&apos; dest=&apos;38,13,126,29&apos; " hotimage="file=&apos;btn_open.png&apos; source=&apos;89,0,177,16&apos; dest=&apos;38,13,126,29&apos; " normalimage="file=&apos;btn_open.png&apos; source=&apos;178,0,266,16&apos; dest=&apos;38,13,126,29&apos; " />
+                                <Button name="btnOpenCombo" float="true" pos="229,228,0,0" width="34" height="58" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;combo_open.png&apos; source=&apos;0,0,34,58&apos;" hotimage="file=&apos;combo_open.png&apos; source=&apos;35,0,69,58&apos;" pushedimage="file=&apos;combo_open.png&apos; source=&apos;70,0,104,58&apos;" />
+                            </HorizontalLayout>
+                            <HorizontalLayout />
+                        </VerticalLayout>
+                        <VerticalLayout />
+                    </HorizontalLayout>
+                    <HorizontalLayout name="ctnMusic" visible="false">
+                        <VerticalLayout />
+                        <VerticalLayout width="106">
+                            <HorizontalLayout />
+                            <HorizontalLayout height="168">
+                                <Control float="true" pos="13,11,0,0" width="80" height="80" bkimage="file=&apos;bk_music_animate.png&apos; source=&apos;0,0,80,80&apos; " />
+                                <Control float="true" pos="0,0,0,0" width="106" height="105" bkimage="bk_music.png" />
+                            </HorizontalLayout>
+                            <HorizontalLayout />
+                        </VerticalLayout>
+                        <VerticalLayout />
+                    </HorizontalLayout>
+                    <WndMediaDisplay name="wndMedia" visible="false"/>
+                    <PlayPanel height="75" />
+                </VerticalLayout>
+            </HorizontalLayout>
+            <ActiveX name="ActiveXLib" />
+            <ActiveX name="ActiveXFind" />
+            <ActiveX name="ActiveXMine" />
+            <ActiveX name="ActiveXCloud" />
+        </TabLayout>
+    </VerticalLayout>
+</Window>

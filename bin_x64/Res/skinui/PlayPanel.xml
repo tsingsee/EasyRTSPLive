@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="609,75">
+    <VerticalLayout name="ctnPlayWnd" bkcolor="#FF070707">
+        <HorizontalLayout height="20">
+            <HorizontalLayout name="ctnSlider" visible="false">
+                <VerticalLayout width="27">
+                    <Button name="btnFastBackward" tooltip="快退" float="true" pos="7,3,0,0" width="17" height="13" normalimage="file=&apos;btn_fast_backward.png&apos; source=&apos;0,0,17,13&apos;" hotimage="file=&apos;btn_fast_backward.png&apos; source=&apos;18,0,35,13&apos;" pushedimage="file=&apos;btn_fast_backward.png&apos; source=&apos;36,0,53,13&apos;" />
+                </VerticalLayout>
+                <VerticalLayout>
+                    <Slider name="sliderPlay"  height="20" bkimage="slider\SliderBack.png" foreimage="slider\SliderFore.png" min="0" max="1000" value="0" hor="true"  thumbhotimage="file=&apos;slider\SliderBar.png&apos; source=&apos;21,0,41,20&apos;" thumbpushedimage="file=&apos;slider\SliderBar.png&apos; source=&apos;42,0,62,20&apos;" thumbsize="20,20" />
+                </VerticalLayout>
+                <VerticalLayout width="24"> 
+                    <Button name="btnFastForward" tooltip="快进" float="true" pos="2,3,0,0" width="17" height="13" normalimage="file=&apos;btn_fast_forward.png&apos; source=&apos;0,0,17,13&apos;" hotimage="file=&apos;btn_fast_forward.png&apos; source=&apos;18,0,35,13&apos;" pushedimage="file=&apos;btn_fast_forward.png&apos; source=&apos;36,0,53,13&apos;" />
+        	    </VerticalLayout>   
+            </HorizontalLayout>
+        </HorizontalLayout>
+        <HorizontalLayout>
+            <VerticalLayout>
+                <Button name="btnPlaylistShow" tooltip="显示播放列表" visible="false" float="true" pos="10,19,0,0" width="18" height="18" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;btn_playlist.png&apos; source=&apos;0,0,18,18&apos;" hotimage="file=&apos;btn_playlist.png&apos; source=&apos;19,0,37,18&apos;" pushedimage="file=&apos;btn_playlist.png&apos; source=&apos;38,0,56,18&apos;" />
+                <Button name="btnPlaylistHide" tooltip="隐藏播放列表" float="true" pos="9,19,0,0" width="18" height="18" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;btn_playlist_hide.png&apos; source=&apos;0,0,18,18&apos;" hotimage="file=&apos;btn_playlist_hide.png&apos; source=&apos;19,0,37,18&apos;" pushedimage="file=&apos;btn_playlist_hide.png&apos; source=&apos;38,0,56,18&apos;" />
+                <Label name="labelPlayTime" font="2" float="true" pos="9,1,0,0" width="100" height="18" textcolor="#FF85909F" align="center" />
+            </VerticalLayout>
+            <VerticalLayout width="350" height="48">
+                <Button name="btnStop" tooltip="停止" float="true" enabled="false" pos="62,6,0,0" width="40" height="40" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;btn_stop.png&apos; source=&apos;0,0,40,40&apos;" hotimage="file=&apos;btn_stop.png&apos; source=&apos;41,0,81,40&apos;" pushedimage="file=&apos;btn_stop.png&apos; source=&apos;82,0,122,40&apos;" disabledimage="file=&apos;btn_stop.png&apos; source=&apos;123,0,163,40&apos;" />
+                <Button name="btnPrevious" tooltip="上一个" float="true" pos="102,6,0,0" width="40" height="40" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;btn_previous.png&apos; source=&apos;0,0,40,40&apos;" hotimage="file=&apos;btn_previous.png&apos; source=&apos;41,0,81,40&apos;" pushedimage="file=&apos;btn_previous.png&apos; source=&apos;82,0,122,40&apos;" />
+                <Button name="btnPlay" tooltip="播放" float="true" pos="142,1,0,0" width="48" height="48" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;btn_play.png&apos; source=&apos;0,0,48,50&apos;" hotimage="file=&apos;btn_play.png&apos; source=&apos;49,0,97,48&apos;" pushedimage="file=&apos;btn_play.png&apos; source=&apos;98,0,146,48&apos;" />
+                <Button name="btnPause" tooltip="暂停" visible="false" float="true" pos="142,1,0,0" width="48" height="48" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;btn_pause.png&apos; source=&apos;0,0,48,50&apos;" hotimage="file=&apos;btn_pause.png&apos; source=&apos;49,0,97,48&apos;" pushedimage="file=&apos;btn_pause.png&apos; source=&apos;98,0,146,48&apos;" />
+                <Button name="btnNext" tooltip="下一个" float="true" pos="190,6,0,0" width="40" height="40" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;btn_next.png&apos; source=&apos;0,0,40,40&apos;" hotimage="file=&apos;btn_next.png&apos; source=&apos;41,0,81,40&apos;" pushedimage="file=&apos;btn_next.png&apos; source=&apos;82,0,122,40&apos;" />
+                <Button name="btnVolume" tooltip="静音" float="true" pos="250,20,0,0" width="16" height="16" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;btn_volume.png&apos; source=&apos;0,0,16,16&apos;" hotimage="file=&apos;btn_volume.png&apos; source=&apos;17,0,33,16&apos;" pushedimage="file=&apos;btn_volume.png&apos; source=&apos;34,0,50,16&apos;" />
+                <Button name="btnVolumeZero" tooltip="取消静音" visible="false" float="true" pos="250,20,0,0" width="16" height="16" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;btn_volume_zero.png&apos; source=&apos;0,0,16,16&apos;" hotimage="file=&apos;btn_volume_zero.png&apos; source=&apos;17,0,33,16&apos;" pushedimage="file=&apos;btn_volume_zero.png&apos; source=&apos;34,0,50,16&apos;" />
+                <Slider name="sliderVol" float="true" pos="268,18,0,0" width="85" height="20"  min="0" max="100" value="60" bkimage="slider\SliderBackVolume.png" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" foreimage="slider\SliderForeVolume.png" hor="true" thumbimage="file=&apos;slider\SliderBar.png&apos; source=&apos;0,0,20,20&apos; " thumbhotimage="file=&apos;slider\SliderBar.png&apos; source=&apos;21,0,41,20&apos;" thumbpushedimage="file=&apos;slider\SliderBar.png&apos; source=&apos;42,0,62,20&apos;" thumbsize="20,20" />
+            </VerticalLayout>
+            <VerticalLayout>
+                <HorizontalLayout>
+                    <VerticalLayout />
+                    <VerticalLayout width="60">
+                        <Button name="btnOpenMini" tooltip="打开文件" float="true" pos="7,18,0,0" width="24" height="18" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;btn_open_mini.png&apos; source=&apos;0,0,24,18&apos;" hotimage="file=&apos;btn_open_mini.png&apos; source=&apos;25,0,49,18&apos;" pushedimage="file=&apos;btn_open_mini.png&apos; source=&apos;50,0,74,18&apos;" />
+                        <Button name="btnScreenFull" tooltip="全屏" float="true" enabled="false" pos="31,18,0,0" width="24" height="18" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;btn_screen_full.png&apos; source=&apos;0,0,24,18&apos;" hotimage="file=&apos;btn_screen_full.png&apos; source=&apos;25,0,49,18&apos;" pushedimage="file=&apos;btn_screen_full.png&apos; source=&apos;50,0,74,18&apos;" disabledimage="file=&apos;btn_screen_full.png&apos; source=&apos;75,0,99,18&apos;" />
+                        <Button name="btnScreenNormal" tooltip="退出全屏" visible="false" float="true" pos="31,18,0,0" width="24" height="18" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;btn_screen_normal.png&apos; source=&apos;0,0,24,18&apos;" hotimage="file=&apos;btn_screen_normal.png&apos; source=&apos;25,0,49,18&apos;" pushedimage="file=&apos;btn_screen_normal.png&apos; source=&apos;50,0,74,18&apos;" disabledimage="file=&apos;btn_screen_normal.png&apos; source=&apos;75,0,99,18&apos;" />
+                    </VerticalLayout>
+                </HorizontalLayout>
+            </VerticalLayout>
+        </HorizontalLayout>
+    </VerticalLayout>
+</Window>

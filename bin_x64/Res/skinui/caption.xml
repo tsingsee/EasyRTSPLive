@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Window size="854,40">
+    <HorizontalLayout name="ctnCaption" bkimage="caption_bk.png" bkcolor="#FF0E1A2F" bkcolor2="#FF060606">
+        <VerticalLayout width="550">
+            <Button name="btnMenu" float="true" pos="10,7,0,0" width="38" height="26" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;btn_menu.png&apos; source=&apos;0,0,38,26&apos;" hotimage="file=&apos;btn_menu.png&apos; source=&apos;117,0,155,26&apos;" pushedimage="file=&apos;btn_menu.png&apos; source=&apos;78,0,116,26&apos;" focusedimage="file=&apos;btn_menu.png&apos; source=&apos;39,0,77,26&apos;" />
+            <Option name="tabPlay" text="播放" float="true" pos="66,0,0,0" width="88" height="38" textcolor="#FFB7DBFB" disabledtextcolor="#FFA7A6AA" font="1" align="center" hottextcolor="#FF084DC8" group="caption" selected="true" selectedimage="light_top.png" />
+            <Option name="tabLib" text="片库" float="true" pos="165,0,0,0" width="88" height="38" textcolor="#FF8F99A4" disabledtextcolor="#FFA7A6AA" font="0" align="center" hottextcolor="#FF084DC8" group="caption" selectedimage="light_top.png" />
+            <Option name="tabFind" text="找片" float="true" pos="264,0,0,0" width="88" height="38" textcolor="#FF8F99A4" disabledtextcolor="#FFA7A6AA" font="0" align="center" hottextcolor="#FF084DC8" group="caption" selectedimage="light_top.png" />
+            <Option name="tabMine" text="我的" float="true" pos="363,0,0,0" width="88" height="38" textcolor="#FF8F99A4" disabledtextcolor="#FFA7A6AA" font="0" align="center" hottextcolor="#FF084DC8" group="caption" selectedimage="light_top.png" />
+            <Option name="tabCloud" text="云播" float="true" pos="462,0,0,0" width="88" height="38" textcolor="#FF8F99A4" disabledtextcolor="#FFA7A6AA" font="0" align="center" hottextcolor="#FF084DC8" group="caption" selectedimage="light_top.png" />
+        </VerticalLayout>
+        <VerticalLayout />
+        <VerticalLayout width="162" height="40">
+            <Button name="btnLogin" float="true" pos="31,14,0,0" width="24" height="13" textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" normalimage="file=&apos;btn_login.png&apos; source=&apos;0,0,24,13&apos;" hotimage="file=&apos;btn_login.png&apos; source=&apos;25,0,49,13&apos;" pushedimage="file=&apos;btn_login.png&apos; source=&apos;50,0,74,13&apos;" />
+            <Button name="minbtn" tooltip="最小化" float="true" pos="69,3,0,0" width="27" height="31" bkimage="file=&apos;btn_minmax.png&apos; source=&apos;45,0,60,15&apos; dest=&apos;6,8,21,23&apos; " textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" hotimage="file=&apos;btn_style_minmax.png&apos; source=&apos;27,0,54,30&apos;" pushedimage="file=&apos;btn_style_minmax.png&apos; source=&apos;54,0,81,30&apos;" />
+            <Button name="maxbtn" tooltip="最大化" float="true" pos="97,3,0,0" width="27" height="31" bkimage="file=&apos;btn_minmax.png&apos; source=&apos;60,0,75,15&apos; dest=&apos;6,8,21,23&apos; " textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" hotimage="file=&apos;btn_style_minmax.png&apos; source=&apos;27,0,54,30&apos;" pushedimage="file=&apos;btn_style_minmax.png&apos; source=&apos;54,0,81,30&apos;" />
+            <Button name="restorebtn" tooltip="还原" visible="false" float="true" pos="96,3,0,0" width="27" height="31" bkimage="file=&apos;btn_minmax.png&apos; source=&apos;75,0,90,15&apos; dest=&apos;6,8,21,23&apos; " textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" hotimage="file=&apos;btn_style_minmax.png&apos; source=&apos;27,0,54,30&apos;" pushedimage="file=&apos;btn_style_minmax.png&apos; source=&apos;54,0,81,30&apos;" />
+            <Button name="closebtn" tooltip="关闭" float="true" pos="125,3,0,0" width="36" height="31" bkimage="file=&apos;btn_minmax.png&apos; source=&apos;90,0,105,15&apos; dest=&apos;11,8,26,23&apos; " textcolor="#FF000000" disabledtextcolor="#FFA7A6AA" align="center" hotimage="file=&apos;btn_style_close.png&apos; source=&apos;36,0,72,30&apos;" pushedimage="file=&apos;btn_style_close.png&apos; source=&apos;72,0,108,30&apos;" />
+        </VerticalLayout>
+    </HorizontalLayout>
+</Window>
