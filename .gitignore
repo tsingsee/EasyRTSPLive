@@ -10,3 +10,4 @@
 /Release/*
 *.tlog
 /RTMPLive/x64/Debug/*
+/RTMPLive/build/*
