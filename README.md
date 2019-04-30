@@ -23,14 +23,9 @@ Linux上编译命令如下：
 ## 下载 ##
 可执行程序下载：https://pan.baidu.com/s/1-7lZ3KM4wPl87OLx2tWjTQ
 
+
 ## 获取更多信息 ##
 
-邮件：[support@easydarwin.org](mailto:support@easydarwin.org) 
+TSINGSEE青犀开放平台：[http://open.tsingsee.com](http://open.tsingsee.com "TSINGSEE青犀开放平台")
 
-WEB：[www.EasyDSS.com](http://www.easydss.com)
-
-QQ交流群：[587254841](https://jq.qq.com/?_wv=1027&k=4ASE72a)
-
-Copyright &copy; EasyDSS.com 2016-2019
-
-![EasyDarwin](http://www.easydarwin.org/skin/easydarwin/images/wx_qrcode.jpg)
+Copyright &copy; TSINGSEE.com 2012~2019
