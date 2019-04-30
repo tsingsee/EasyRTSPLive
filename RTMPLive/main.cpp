@@ -27,11 +27,11 @@
 #define MAX_RTMP_URL_LEN 256
 
 #ifdef _WIN32
-#define KEY "79397037795969576B5A754144474A636F35337A4A664E535645315154476C325A53356C6547576D567778576F502B6C3430566863336C4559584A33615735555A57467453584E55614756435A584E30514449774D54686C59584E35"
-#define RTSP_KEY "79393674363469576B5A7341646E68636F34654A772F4E535645315154476C325A53356C65475570567778576F502F443430566863336C4559584A33615735555A57467453584E55614756435A584E30514449774D54686C59584E35"
+#define KEY "79736C36655969576B5A7541725370636F395652792B394659584E35556C524E55457870646D55755A58686C4931634D5671442F532F34675A57467A65513D3D"
+#define RTSP_KEY "6D75724D7A4969576B5A7541725370636F395652792B394659584E35556C524E55457870646D55755A58686C4B56634D5671442F532F34675A57467A65513D3D"
 #else // linux
-#define KEY "79397037795A4F576B596F41753242636F353945706664796447317762476C325A547858444661672F36586A5257467A65555268636E6470626C526C5957314A6331526F5A554A6C633352414D6A41784F47566863336B3D"
-#define RTSP_KEY "7939367436354F576B596F41646E68636F34654A772F64796447317762476C325A534E58444661672F38506A5257467A65555268636E6470626C526C5957314A6331526F5A554A6C633352414D6A41784F47566863336B3D"
+#define KEY "79736C36655A4F576B597141725370636F395652792F4E6C59584E35636E527463477870646D572B567778576F50394C2F69426C59584E35"
+#define RTSP_KEY "6D75724D7A4A4F576B597141725370636F395652792F4E6C59584E35636E527463477870646D5745567778576F50394C2F69426C59584E35"
 #endif
 
 #define BUFFER_SIZE  1024*1024
@@ -49,7 +49,7 @@ typedef struct _channel_cfg_struct_t
 
 typedef struct _rtmp_pusher_struct_t
 {
-	Easy_RTMP_Handle rtmpHandle;
+	Easy_Handle rtmpHandle;
 	unsigned int u32AudioCodec;	
 	unsigned int u32AudioSamplerate;
 	unsigned int u32AudioChannel;
@@ -59,7 +59,7 @@ typedef struct _channel_info_struct_t
 {
 	_channel_cfg		fCfgInfo;
 	_rtmp_pusher		fPusherInfo;
-	Easy_RTSP_Handle	fNVSHandle;
+	Easy_Handle	fNVSHandle;
 	FILE*				fLogHandle;
 	bool				fHavePrintKeyInfo;
 	EASY_MEDIA_INFO_T	fMediainfo;
@@ -91,12 +91,11 @@ int __EasyRTMP_Callback(int _frameType, char *pBuf, EASY_RTMP_STATE_T _state, vo
 	default:
 		break;
 	}
-
 	return 0;
 }
 
 /* EasyRTSPClient callback */
-int Easy_APICALL __RTSPSourceCallBack( int _chid, void *_chPtr, int _mediatype, char *pbuf, RTSP_FRAME_INFO *frameinfo)
+int Easy_APICALL __RTSPSourceCallBack( int _chid, void *_chPtr, int _mediatype, char *pbuf, EASY_FRAME_INFO *frameinfo)
 {
 	if (NULL != frameinfo)
 	{
@@ -191,7 +190,7 @@ int Easy_APICALL __RTSPSourceCallBack( int _chid, void *_chPtr, int _mediatype, 
 			}				
 		}	
 	}
-	else if (_mediatype == EASY_SDK_MEDIA_INFO_FLAG)//�ص���ý����Ϣ
+	else if (_mediatype == EASY_SDK_MEDIA_INFO_FLAG)
 	{
 		if(pbuf != NULL)
 		{
@@ -267,8 +266,9 @@ int main(int argc, char * argv[])
 {
 	InitCfgInfo();
 
-	int iret = EasyRTMP_Activate(KEY);
-	if (iret != 0)
+	int iret = 0;
+	iret = EasyRTMP_Activate(KEY);
+	if (iret <= 0)
 	{
 		printf("RTMP Activate error. ret=%d!!!\n", iret);
 		getchar();
@@ -282,8 +282,9 @@ int main(int argc, char * argv[])
 
 	atexit(ReleaseSpace);
 
+	iret = 0;
 	iret = EasyRTSP_Activate(RTSP_KEY);
-	if(iret != 0)
+	if(iret <= 0)
 	{
 		printf("rtsp Activate error. ret=%d!!!\n", iret);
 		return -2;

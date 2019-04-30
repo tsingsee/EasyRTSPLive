@@ -8,3 +8,5 @@
 *.ilk
 /Debug/*
 /Release/*
+*.tlog
+/RTMPLive/x64/Debug/*

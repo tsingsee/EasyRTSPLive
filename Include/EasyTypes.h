@@ -16,13 +16,9 @@
 #define Easy_APICALL 
 #endif
 
-// Handle Type
-#define Easy_RTSP_Handle void*
-#define Easy_Pusher_Handle void*
-#define Easy_HLS_Handle void*
+#define Easy_Handle void*
 
 typedef int						Easy_I32;
-
 typedef unsigned char           Easy_U8;
 typedef unsigned char           Easy_UChar;
 typedef unsigned short          Easy_U16;
@@ -59,7 +55,6 @@ enum
 };
 typedef int Easy_Error;
 
-
 typedef enum __EASY_ACTIVATE_ERR_CODE_ENUM
 {
 	EASY_ACTIVATE_INVALID_KEY		=		-1,			/* 无效Key */
@@ -69,10 +64,9 @@ typedef enum __EASY_ACTIVATE_ERR_CODE_ENUM
 	EASY_ACTIVATE_VALIDITY_PERIOD_ERR=		-5,			/* 有效期校验不一致 */
 	EASY_ACTIVATE_PLATFORM_ERR		=		-6,			/* 平台不匹配 */
 	EASY_ACTIVATE_COMPANY_ID_LEN_ERR=		-7,			/* 授权使用商不匹配 */
-	EASY_ACTIVATE_SUCCESS			=		0,			/* 激活成功 */
+	EASY_ACTIVATE_SUCCESS			=		9999,		/* 激活成功 */
 
 }EASY_ACTIVATE_ERR_CODE_ENUM;
-
 
 /* 视频编码 */
 #define EASY_SDK_VIDEO_CODEC_H264	0x1C		/* H264  */
@@ -96,6 +90,7 @@ typedef enum __EASY_ACTIVATE_ERR_CODE_ENUM
 #define EASY_SDK_RTP_FRAME_FLAG		0x00000008		/* RTP帧标志 */
 #define EASY_SDK_SDP_FRAME_FLAG		0x00000010		/* SDP帧标志 */
 #define EASY_SDK_MEDIA_INFO_FLAG	0x00000020		/* 媒体类型标志*/
+#define EASY_SDK_SNAP_FRAME_FLAG	0x00000040		/* 图片标志*/
 
 /* 视频关键字标识 */
 #define EASY_SDK_VIDEO_FRAME_I		0x01		/* I帧 */
@@ -107,8 +102,19 @@ typedef enum __EASY_ACTIVATE_ERR_CODE_ENUM
 typedef enum __EASY_RTP_CONNECT_TYPE
 {
 	EASY_RTP_OVER_TCP	=	0x01,		/* RTP Over TCP */
-	EASY_RTP_OVER_UDP					/* RTP Over UDP */
+	EASY_RTP_OVER_UDP,					/* RTP Over UDP */
+	EASY_RTP_OVER_MULTICAST				/* RTP Over MULTICAST */
 }EASY_RTP_CONNECT_TYPE;
+
+typedef struct __EASY_AV_Frame
+{
+	Easy_U32    u32AVFrameFlag;		/* 帧标志  视频 or 音频 */
+	Easy_U32    u32AVFrameLen;		/* 帧的长度 */
+	Easy_U32    u32VFrameType;		/* 视频的类型，I帧或P帧 */
+	Easy_U8     *pBuffer;			/* 数据 */
+	Easy_U32	u32TimestampSec;	/* 时间戳(秒)*/
+	Easy_U32	u32TimestampUsec;	/* 时间戳(微秒) */
+} EASY_AV_Frame;
 
 /* 媒体信息 */
 typedef struct __EASY_MEDIA_INFO_T
@@ -121,14 +127,14 @@ typedef struct __EASY_MEDIA_INFO_T
 	Easy_U32 u32AudioChannel;			/* 音频通道数 */
 	Easy_U32 u32AudioBitsPerSample;		/* 音频采样精度 */
 
-	Easy_U32 u32VpsLength;			/* 脢脫脝碌vps脰隆鲁陇露脠 */
-	Easy_U32 u32SpsLength;			/* 脢脫脝碌sps脰隆鲁陇露脠 */
-	Easy_U32 u32PpsLength;			/* 脢脫脝碌pps脰隆鲁陇露脠 */
-	Easy_U32 u32SeiLength;			/* 脢脫脝碌sei脰隆鲁陇露脠 */
-	Easy_U8	 u8Vps[255];			/* 脢脫脝碌vps脰隆脛脷脠脻 */
-	Easy_U8	 u8Sps[255];			/* 脢脫脝碌sps脰隆脛脷脠脻 */
-	Easy_U8	 u8Pps[128];				/* 脢脫脝碌sps脰隆脛脷脠脻 */
-	Easy_U8	 u8Sei[128];				/* 脢脫脝碌sei脰隆脛脷脠脻 */
+	Easy_U32 u32VpsLength;
+	Easy_U32 u32SpsLength;
+	Easy_U32 u32PpsLength;
+	Easy_U32 u32SeiLength;
+	Easy_U8	 u8Vps[255];
+	Easy_U8	 u8Sps[255];
+	Easy_U8	 u8Pps[128];
+	Easy_U8	 u8Sei[128];
 }EASY_MEDIA_INFO_T;
 
 /* 帧信息 */
@@ -154,6 +160,6 @@ typedef struct
 	
 	float			bitrate;			/* 比特率 */
 	float			losspacket;			/* 丢包率 */
-}RTSP_FRAME_INFO;
+}EASY_FRAME_INFO;
 
 #endif
