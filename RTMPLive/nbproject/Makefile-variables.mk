@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # x64 configuration
 CND_PLATFORM_x64=GNU-Linux
 CND_ARTIFACT_DIR_x64=x64
-CND_ARTIFACT_NAME_x64=rtmplive
-CND_ARTIFACT_PATH_x64=x64/rtmplive
+CND_ARTIFACT_NAME_x64=easyrtmplive
+CND_ARTIFACT_PATH_x64=x64/easyrtmplive
 CND_PACKAGE_DIR_x64=dist/x64/GNU-Linux/package
-CND_PACKAGE_NAME_x64=rtmplive.tar
-CND_PACKAGE_PATH_x64=dist/x64/GNU-Linux/package/rtmplive.tar
+CND_PACKAGE_NAME_x64=easyrtmplive.tar
+CND_PACKAGE_PATH_x64=dist/x64/GNU-Linux/package/easyrtmplive.tar
 # i386 configuration
 CND_PLATFORM_i386=GNU-Linux
 CND_ARTIFACT_DIR_i386=i386
-CND_ARTIFACT_NAME_i386=rtmplive
-CND_ARTIFACT_PATH_i386=i386/rtmplive
+CND_ARTIFACT_NAME_i386=easyrtmplive
+CND_ARTIFACT_PATH_i386=i386/easyrtmplive
 CND_PACKAGE_DIR_i386=dist/i386/GNU-Linux/package
-CND_PACKAGE_NAME_i386=rtmplive.tar
-CND_PACKAGE_PATH_i386=dist/i386/GNU-Linux/package/rtmplive.tar
+CND_PACKAGE_NAME_i386=easyrtmplive.tar
+CND_PACKAGE_PATH_i386=dist/i386/GNU-Linux/package/easyrtmplive.tar
 #
 # include compiler specific variables
 #

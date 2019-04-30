@@ -54,30 +54,30 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-L../Lib/${CND_CONF} -LlibEasyRTSPClient/Lib/${CND_CONF}
+LDLIBSOPTIONS=-L../Lib/${CND_CONF}
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_CONF}/rtmplive
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_CONF}/easyrtmplive
 
-${CND_CONF}/rtmplive: ${OBJECTFILES}
+${CND_CONF}/easyrtmplive: ${OBJECTFILES}
 	${MKDIR} -p ${CND_CONF}
-	${LINK.cc} -o ${CND_CONF}/rtmplive ${OBJECTFILES} ${LDLIBSOPTIONS} -leasyrtmp -leasyrtspclient -pthread -lrt
+	${LINK.cc} -o ${CND_CONF}/easyrtmplive ${OBJECTFILES} ${LDLIBSOPTIONS} -leasyrtmp -leasyrtspclient -pthread -lrt
 
 ${OBJECTDIR}/ini.o: ini.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -IlibEasyRTSPClient/Include -I../Include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ini.o ini.cpp
+	$(COMPILE.cc) -O2 -I../Include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ini.o ini.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -IlibEasyRTSPClient/Include -I../Include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -O2 -I../Include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 ${OBJECTDIR}/trace.o: trace.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -IlibEasyRTSPClient/Include -I../Include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/trace.o trace.cpp
+	$(COMPILE.cc) -O2 -I../Include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/trace.o trace.cpp
 
 # Subprojects
 .build-subprojects:

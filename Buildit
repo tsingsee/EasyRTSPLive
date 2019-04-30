@@ -3,7 +3,7 @@
 usage()
 {	
 	echo "**************build stream from RTMPLive demo******************"
-	echo "1. build 32bit program ./Buildit i386 [target in i386]"	
+	echo "1. build 32bit program ./Buildit x86 [target in x86]"	
 	echo "2. build 64bit program ./Buildit x64 [target in x64]"	
 	echo "3. clean up ./Buildit clean"
 	echo "-----------------------------------------------------------"
@@ -12,14 +12,14 @@ usage()
 
 if [ "$*" = "clean" ] ; then
 	cd RTMPLive
-	make -f nbproject/Makefile-i386.mk QMAKE= SUBPROJECTS= .clean-conf		
+	make -f nbproject/Makefile-x86.mk QMAKE= SUBPROJECTS= .clean-conf		
 	make -f nbproject/Makefile-x64.mk QMAKE= SUBPROJECTS= .clean-conf
 elif [ "$*" = "x64" ] ; then
     cd RTMPLive
     make -f nbproject/Makefile-x64.mk QMAKE= SUBPROJECTS= .build-conf
-elif [ "$*" = "i386" ] ; then
+elif [ "$*" = "x86" ] ; then
     cd RTMPLive
-    make -f nbproject/Makefile-i386.mk QMAKE= SUBPROJECTS= .build-conf
+    make -f nbproject/Makefile-x86.mk QMAKE= SUBPROJECTS= .build-conf
 else
 	usage;
 fi
