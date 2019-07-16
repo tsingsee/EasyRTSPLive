@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">EasyRTSPLive</string>
+    <string name="app_flavor">basic</string>
+
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_splash">Splash</string>
+
+    <string name="about_info">拉流IPC摄像机或者NVR硬盘录像机RTSP流转成RTMP推送到阿里云CDN/腾讯云CDN/RTMP流媒体服务器，支持多路RTSP流同时拉取并以RTMP协议推送发布。\n\n采用Config.ini配置文件，来配置每路输入的RTSP地址，以及目标RTMP地址。channel必须是channel0到channel1024之间，目标rtmp地址不能重复。</string>
+</resources>
