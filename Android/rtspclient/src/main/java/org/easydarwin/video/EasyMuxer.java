@@ -15,10 +15,11 @@ import java.security.InvalidParameterException;
  */
 
 public class EasyMuxer {
-
     public static final boolean VERBOSE = true;
     private static final String TAG = EasyMuxer.class.getSimpleName();
+
     private final String mFilePath;
+
     private MediaMuxer mMuxer;
     private final long durationMillis;
     private int index = 0;
@@ -32,6 +33,7 @@ public class EasyMuxer {
         mFilePath = path;
         this.durationMillis = durationMillis;
         Object mux = null;
+
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
                 mux = new MediaMuxer(path + "-" + index++ + ".mp4", MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4);
@@ -52,6 +54,7 @@ public class EasyMuxer {
             int track = mMuxer.addTrack(format);
             if (VERBOSE)
                 Log.i(TAG, String.format("addTrack %s result %d", isVideo ? "video" : "audio", track));
+
             if (isVideo) {
                 mVideoFormat = format;
                 mVideoTrackIndex = track;
@@ -77,6 +80,7 @@ public class EasyMuxer {
             Log.i(TAG, String.format("pumpStream [%s] but muxer is not start.ignore..", isVideo ? "video" : "audio"));
             return;
         }
+
         if ((bufferInfo.flags & MediaCodec.BUFFER_FLAG_CODEC_CONFIG) != 0) {
             // The codec config data was pulled out and fed to the muxer when we got
             // the INFO_OUTPUT_FORMAT_CHANGED status.  Ignore it.
@@ -105,10 +109,12 @@ public class EasyMuxer {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
                 if (VERBOSE)
                     Log.i(TAG, String.format("record file reach expiration.create new file:" + index));
+
                 mMuxer.stop();
                 mMuxer.release();
                 mMuxer = null;
                 mVideoTrackIndex = mAudioTrackIndex = -1;
+
                 try {
                     mMuxer = new MediaMuxer(mFilePath + "-" + index++ + ".mp4", MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4);
                     addTrack(mVideoFormat, true);
@@ -126,6 +132,7 @@ public class EasyMuxer {
                 if (mAudioTrackIndex != -1 && mVideoTrackIndex != -1) {
                     if (VERBOSE)
                         Log.i(TAG, String.format("muxer is started. now it will be stoped."));
+
                     try {
                         mMuxer.stop();
                         mMuxer.release();

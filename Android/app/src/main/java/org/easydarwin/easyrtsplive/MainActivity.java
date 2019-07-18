@@ -4,7 +4,7 @@
 	WEChat: EasyDarwin
 	Website: http://www.easydarwin.org
 */
-package org.easydarwin.easyrtmp_rtsp;
+package org.easydarwin.easyrtsplive;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,12 +31,12 @@ import org.easydarwin.video.Client;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     /*
     *本Key为3个月临时授权License，如需商业使用，请邮件至support@easydarwin.org申请此产品的授权。
     */
-    public static final String EasyRTSPClient_KEY = "79393674363536526D343241496A31636F384C644A654E76636D63755A57467A65575268636E64706269356C59584E35636E52746346397964484E774B56634D5671442F70654E4659584E355247467964326C755647566862556C7A5647686C516D567A644541794D4445345A57467A65513D3D";
-    public static final String EasyRTMP_KEY = "79397037795A36526D343041305474636F38517570654E76636D63755A57467A65575268636E64706269356C59584E35636E52746346397964484E77766C634D5671442F70654E4659584E355247467964326C755647566862556C7A5647686C516D567A644541794D4445345A57467A65513D3D";
+    public static final String EasyRTSPClient_KEY = "79393674363536526D34304154526C646F75617970655276636D63755A57467A65575268636E64706269356C59584E35636E527A63477870646D5658444661672F36586A5257467A65555268636E6470626C526C5957314A6331526F5A554A6C633352414D6A41784F47566863336B3D";
+    public static final String EasyRTMP_KEY = "79397037795A36526D34304154526C646F75617970655276636D63755A57467A65575268636E64706269356C59584E35636E527A63477870646D5658444661672F36586A5257467A65555268636E6470626C526C5957314A6331526F5A554A6C633352414D6A41784F47566863336B3D";
 
     public EditText etRtspUrl;
     public EditText etRtmpUrl;
@@ -53,15 +53,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar tlToolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(tlToolbar);
 
         mViewContainer = (LinearLayout)findViewById(R.id.option_bar_container);
-
         tvVideoInfo = (TextView)findViewById(R.id.tvVideoInfo);
-
         etRtspUrl = (EditText)findViewById(R.id.rtsp_url);
         etRtmpUrl = (EditText)findViewById(R.id.rtmp_url);
+        mDbgInfoPrint = (StatusInfoView)findViewById(R.id.tvEventMsg);
+
         String rtsp = EasyApplication.getEasyApplication().getRTSPUrl();
         String rtmp = EasyApplication.getEasyApplication().getRTMPUrl();
         etRtspUrl.setText(rtsp);
@@ -70,20 +71,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btStartPush = (Button)findViewById(R.id.btnStartPush);
         btStartPush.setOnClickListener(this);
 
-        if(EasyApplication.getPushState()) {
+        if (EasyApplication.getPushState()) {
             btStartPush.setText("停止推送");
         } else {
             btStartPush.setText("开始推送");
         }
 
-        mDbgInfoPrint = (StatusInfoView)findViewById(R.id.tvEventMsg);
         initDbgInfoView();
 
         mResultReceiver = new ResultReceiver(new Handler()) {
             @Override
             protected void onReceiveResult(int resultCode, Bundle resultData) {
                 super.onReceiveResult(resultCode, resultData);
-                switch (resultCode){
+                switch (resultCode) {
                     case EasyRTSPClient.RESULT_VIDEO_SIZE:
                         int width = resultData.getInt(EasyRTSPClient.EXTRA_VIDEO_WIDTH);
                         int height = resultData.getInt(EasyRTSPClient.EXTRA_VIDEO_HEIGHT);
@@ -112,22 +112,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.btnStartPush:
-                if(EasyApplication.getPushState()) {
+                if (EasyApplication.getPushState()) {
                     EasyApplication.setPushState(false);
                     StopPushing();
                     btStartPush.setText("开始推送");
-                }else{
+                } else {
                     EasyApplication.setPushState(true);
                     String rtspValue = etRtspUrl.getText().toString();
                     String rtmpValue = etRtmpUrl.getText().toString();
+
                     if (TextUtils.isEmpty(rtspValue)) {
                         rtspValue = Config.DEFAULT_RTSP_URL;
                     }
+
                     if (TextUtils.isEmpty(rtmpValue)) {
                         rtmpValue = Config.DEFAULT_SERVER_URL;
                     }
+
                     EasyApplication.getEasyApplication().saveStringIntoPref(Config.RTSP_URL, rtspValue);
                     EasyApplication.getEasyApplication().saveStringIntoPref(Config.SERVER_URL, rtmpValue);
 
@@ -135,6 +138,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     StartPushing();
                 }
+
                 break;
         }
     }
@@ -142,9 +146,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initDbgInfoView() {
         if (mDbgInfoPrint == null)
             return;
+
         int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
         int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
         mViewContainer.measure(w, h);
+
         int height = mViewContainer.getMeasuredHeight();
         int width = mViewContainer.getMeasuredWidth();
 
@@ -160,17 +166,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void onEvent(String msg) {
         Intent intent = new Intent(StatusInfoView.DBG_MSG);
-        intent.putExtra(StatusInfoView.DBG_DATA, String.format("[%s]\t%s\n",new SimpleDateFormat("HH:mm:ss").format(new Date()),msg));
+        intent.putExtra(StatusInfoView.DBG_DATA, String.format("[%s]\t%s\n", new SimpleDateFormat("HH:mm:ss").format(new Date()), msg));
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
 
-    void StartPushing(){
+    void StartPushing() {
         mStreamHamal = new EasyRTSPClient(this, EasyRTSPClient_KEY, null, mResultReceiver);
+
         String rtsp = EasyApplication.getEasyApplication().getRTSPUrl();
         String rtmp = EasyApplication.getEasyApplication().getRTMPUrl();
-        mPusher = new EasyRTMP(mResultReceiver);
-        mStreamHamal.setRTMPInfo(mPusher, rtmp, EasyRTMP_KEY, new InitCallback(){
 
+        mPusher = new EasyRTMP(mResultReceiver);
+        mStreamHamal.setRTMPInfo(mPusher, rtmp, EasyRTMP_KEY, new InitCallback() {
             @Override
             public void onCallback(int code) {
                 Bundle resultData = new Bundle();
@@ -212,6 +219,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mResultReceiver.send(EasyRTSPClient.RESULT_EVENT, resultData);
             }
         });
+
         mStreamHamal.start(rtsp, Client.TRANSTYPE_TCP, Client.EASY_SDK_VIDEO_FRAME_FLAG | Client.EASY_SDK_AUDIO_FRAME_FLAG, "", "");
     }
 

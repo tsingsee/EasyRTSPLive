@@ -22,7 +22,6 @@ public class VideoCodec {
     protected int mHandle;
     private DecodeParam mParam;
 
-
     public class DecodeParam {
         public byte[] buffer;
         public int offset;
@@ -101,9 +100,7 @@ public class VideoCodec {
         mHandle = 0;
     }
 
-
     public static class VideoDecoderLite extends VideoCodec {
-
         private byte[] mImageBufferReuse;
         private int[] mSize;
         private Object surface;

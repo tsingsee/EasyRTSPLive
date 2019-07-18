@@ -17,6 +17,7 @@ import static org.easydarwin.easyrtmp.push.EasyRTMP.MSG.EasyRTMP_VideoInfo;
 
 public class EasyRTMP implements Pusher {
     private static String TAG = "EasyRTMP";
+
     static {
         System.loadLibrary("easyrtmp");
     }
@@ -38,13 +39,13 @@ public class EasyRTMP implements Pusher {
             public static final int EASY_ACTIVATE_PLATFORM_ERR		        =	-6;		  //平台不匹配
             public static final int EASY_ACTIVATE_COMPANY_ID_LEN_ERR        =	-7;		  //授权使用商不匹配
             public static final int EASY_ACTIVATE_SUCCESS                   =   0;        //激活成功
-            public static final int EASY_RTMP_STATE_CONNECTING =   1;        //连接中
-            public static final int EASY_RTMP_STATE_CONNECTED =   2;        //连接成功
-            public static final int EASY_RTMP_STATE_CONNECT_FAILED =   3;        //连接失败
-            public static final int EASY_RTMP_STATE_CONNECT_ABORT =   4;        //连接异常中断
-            public static final int EASY_RTMP_STATE_PUSHING =   5;        //推流中
-            public static final int EASY_RTMP_STATE_DISCONNECTED =   6;        //断开连接
-            public static final int EASY_RTMP_STATE_ERROR =   7;
+            public static final int EASY_RTMP_STATE_CONNECTING              =   1;        //连接中
+            public static final int EASY_RTMP_STATE_CONNECTED               =   2;        //连接成功
+            public static final int EASY_RTMP_STATE_CONNECT_FAILED          =   3;        //连接失败
+            public static final int EASY_RTMP_STATE_CONNECT_ABORT           =   4;        //连接异常中断
+            public static final int EASY_RTMP_STATE_PUSHING                 =   5;        //推流中
+            public static final int EASY_RTMP_STATE_DISCONNECTED            =   6;        //断开连接
+            public static final int EASY_RTMP_STATE_ERROR                   =   7;
         }
     }
 
@@ -58,7 +59,7 @@ public class EasyRTMP implements Pusher {
         public static final int FRAME_TYPE_VIDEO = 1;
     }
 
-    public EasyRTMP(ResultReceiver rr){
+    public EasyRTMP(ResultReceiver rr) {
         mRR = rr;
     }
 
@@ -86,7 +87,9 @@ public class EasyRTMP implements Pusher {
     private native void stopPush(long pusherObj);
 
     public synchronized void stop() {
-        if (mPusherObj == 0) return;
+        if (mPusherObj == 0)
+            return;
+
         stopPush(mPusherObj);
         mPusherObj = 0;
     }
@@ -108,36 +111,46 @@ public class EasyRTMP implements Pusher {
             public void onCallback(int code) {
                 if (code != this.code) {
                     this.code = code;
-                    if (callback != null) callback.onCallback(code);
+
+                    if (callback != null)
+                        callback.onCallback(code);
                 }
             }
         },
         fps, samplerate, channelcount);
     }
 
-    public void push(byte[] data, long timestamp, int type){
+    public void push(byte[] data, long timestamp, int type) {
         push(data, 0, data.length, timestamp,type);
     }
 
-    public synchronized void push(byte[] data, int offset, int length, long timestamp, int type){
+    public synchronized void push(byte[] data, int offset, int length, long timestamp, int type) {
         mTotal += length;
-        if (type == 1){
+
+        if (type == 1) {
             mTotalFrms++;
         }
+
         long interval = System.currentTimeMillis() - pPreviewTS;
-        if (interval >= 3000){
+
+        if (interval >= 3000) {
             long bps = mTotal * 1000 / (interval);
             long fps = mTotalFrms * 1000 / (interval);
             Log.i(TAG, String.format("fps:%d, bps:%d", fps, bps));
+
             pPreviewTS = System.currentTimeMillis();
             mTotal = 0;
             mTotalFrms = 0;
 
             Bundle resultData = new Bundle();
             resultData.putString("event-msg", String.format("视频信息: fps[%d], bps[%d]", fps, bps));
-            if (mRR != null) mRR.send(EasyRTMP_VideoInfo, resultData);
+
+            if (mRR != null)
+                mRR.send(EasyRTMP_VideoInfo, resultData);
         }
-        if (mPusherObj == 0) return;
+
+        if (mPusherObj == 0)
+            return;
 
         push(mPusherObj, data, offset, length, timestamp,type);
     }

@@ -2,7 +2,6 @@ package org.easydarwin.easyrtmp.push;
 
 import android.content.Context;
 
-
 public interface Pusher {
 
     public void stop() ;

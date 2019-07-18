@@ -1,16 +1,18 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 26
+    buildToolsVersion "28.0.3"
+
     defaultConfig {
-        applicationId "org.easydarwin.easyrtmp_rtsp"
-        minSdkVersion 16
-        targetSdkVersion 25
-        versionCode 4
-        versionName "1.1.18.1113"
+        applicationId "org.easydarwin.easyrtsplive"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 11190706
+        versionName "1.1.19.0706"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -20,12 +22,17 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
-    compile project(path: ':rtspclient')
+//    implementation fileTree(include: ['*.jar'], dir: 'libs')
+//    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+//        exclude group: 'com.android.support', module: 'support-annotations'
+//    })
+
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation "com.android.support.constraint:constraint-layout:1.0.2"
+    androidTestImplementation "com.android.support:support-annotations:26.1.0"
+
+//    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'junit:junit:4.12'
+
+    implementation project(path: ':rtspclient')
 }

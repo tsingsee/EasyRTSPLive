@@ -4,7 +4,7 @@
 	WEChat: EasyDarwin
 	Website: http://www.easydarwin.org
 */
-package org.easydarwin.easyrtmp_rtsp;
+package org.easydarwin.easyrtsplive;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -22,20 +22,23 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 public class StatusInfoView extends View {
-    private Paint mPaint;
-    private Context mContext;
-    private static ArrayList<String> mInfoList = null;
-    private static StatusInfoView mInstence;
     private static final String TAG = "StatusInfoView";
     public static final String DBG_MSG = "dbg-msg";
     public static final String DBG_DATA = "dbg-data";
+
+    private Paint mPaint;
+    private Context mContext;
+
+    private static ArrayList<String> mInfoList = null;
+    private static StatusInfoView mInstence;
 
     private BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (DBG_MSG.equals(intent.getAction())) {
                 final String msg = intent.getStringExtra(DBG_DATA);
-                if(!msg.isEmpty()) {
+
+                if (!msg.isEmpty()) {
                     addInfoMsg(msg);
                 }
             }
@@ -44,6 +47,7 @@ public class StatusInfoView extends View {
 
     public StatusInfoView(Context context) {
         super(context);
+
         mContext = context;
         init();
     }
@@ -54,7 +58,7 @@ public class StatusInfoView extends View {
         init();
     }
 
-    private void init(){
+    private void init() {
         mInfoList = new ArrayList<String>();
         mInfoList.clear();
 
@@ -62,25 +66,25 @@ public class StatusInfoView extends View {
         LocalBroadcastManager.getInstance(mContext).registerReceiver(mReceiver, inf);
     }
 
-    public void uninit(){
+    public void uninit() {
         LocalBroadcastManager.getInstance(mContext).unregisterReceiver(mReceiver);
     }
 
-    public static StatusInfoView getInstence(){
+    public static StatusInfoView getInstence() {
         return mInstence;
     }
 
-    public void setInstence(StatusInfoView instence){
+    public void setInstence(StatusInfoView instence) {
         mInstence = instence;
         handler.postDelayed(runnable, 1000);
     }
 
-    public void addInfoMsg(String info){
+    public void addInfoMsg(String info) {
         mInfoList.add(info);
     }
 
-    Handler handler=new Handler();
-    Runnable runnable=new Runnable(){
+    Handler handler = new Handler();
+    Runnable runnable = new Runnable(){
         @Override
         public void run() {
             invalidate();
@@ -91,14 +95,15 @@ public class StatusInfoView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        int i = 0;
+
         mPaint = new Paint();
         mPaint.setTextSize(30);
 
         ViewGroup.LayoutParams lp = this.getLayoutParams();
         int posY = this.getHeight() - 30;
-        for(i = mInfoList.size()-1; i >= 0; i--){
-            if(posY < 0) {
+
+        for(int i = mInfoList.size()-1; i >= 0; i--){
+            if (posY < 0) {
                 mInfoList.remove(i);
                 continue;
             }

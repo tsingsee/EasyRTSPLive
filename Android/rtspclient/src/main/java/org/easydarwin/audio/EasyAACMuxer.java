@@ -7,7 +7,6 @@ import android.util.Log;
 
 import org.easydarwin.easyrtmp.push.EasyRTMP;
 import org.easydarwin.easyrtmp.push.Pusher;
-import org.easydarwin.video.EasyMuxer;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -65,7 +64,9 @@ public class EasyAACMuxer {//extends EasyMuxer
         if(mAACBuf == null){
             mAACBuf = new byte[MAX_AAC_LEN];
         }
+
         int index = 0;
+
         // 将pcm编码成AAC
         do {
             index = mMediaCodec.dequeueOutputBuffer(mBufferInfo, 1000);
@@ -99,6 +100,7 @@ public class EasyAACMuxer {//extends EasyMuxer
         } while (index >= 0 && !Thread.currentThread().isInterrupted());
 
         final ByteBuffer[] inputBuffers = mMediaCodec.getInputBuffers();
+
         do {
             index = mMediaCodec.dequeueInputBuffer(1000);
             if (index >= 0) {
@@ -107,8 +109,7 @@ public class EasyAACMuxer {//extends EasyMuxer
                 //if (VERBOSE) Log.d(TAG,String.format("queueInputBuffer pcm data length:%d,tmUS:%d", length, timeUs));
                 mMediaCodec.queueInputBuffer(index, 0, length, timeUs, 0);
             }
-        }
-        while (!Thread.currentThread().isInterrupted() && index < 0);
+        } while (!Thread.currentThread().isInterrupted() && index < 0);
     }
 
     //@Override

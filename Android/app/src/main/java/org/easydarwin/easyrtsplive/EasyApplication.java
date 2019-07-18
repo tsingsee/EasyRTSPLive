@@ -4,7 +4,7 @@
 	WEChat: EasyDarwin
 	Website: http://www.easydarwin.org
 */
-package org.easydarwin.easyrtmp_rtsp;
+package org.easydarwin.easyrtsplive;
 
 import android.app.Application;
 import android.content.SharedPreferences;
@@ -18,6 +18,7 @@ public class EasyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         mApplication = this;
         mPushState = false;
     }
@@ -47,14 +48,15 @@ public class EasyApplication extends Application {
         return id;
     }
 
-
     public String getRTMPUrl() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String defValue = Config.DEFAULT_SERVER_URL;
         String ip = sharedPreferences.getString(Config.SERVER_URL, defValue);
+
         if (ip.equals(defValue)){
             sharedPreferences.edit().putString(Config.SERVER_URL, defValue).apply();
         }
+
         return ip;
     }
 }

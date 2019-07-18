@@ -22,12 +22,12 @@ public class Client implements Closeable {
         public int type;			/* 视频帧类型 */
         public byte fps;			/* 视频帧率 */
         public short width;			/* 视频宽 */
-        public short height;			/* 视频高 */
+        public short height;	    /* 视频高 */
 
-        public int reserved1;			/* 保留参数1 */
-        public int reserved2;			/* 保留参数2 */
+        public int reserved1;		/* 保留参数1 */
+        public int reserved2;		/* 保留参数2 */
 
-        public int sample_rate;	/* 音频采样率 */
+        public int sample_rate;	    /* 音频采样率 */
         public int channels;		/* 音频声道数 */
         public int bits_per_sample;	/* 音频采样精度 */
 
@@ -38,7 +38,7 @@ public class Client implements Closeable {
         public long stamp;
 
         public float bitrate;		/* 比特率 */
-        public float losspacket;		/* 丢包率 */
+        public float losspacket;	/* 丢包率 */
 
         public byte[] buffer;
         public int offset = 0;
@@ -56,7 +56,6 @@ public class Client implements Closeable {
         int ppsLen;
         byte[] sps;
         byte[] pps;
-
 
         @Override
         public String toString() {
@@ -81,16 +80,15 @@ public class Client implements Closeable {
         void onEvent(int _channelId, int err, int info);
     }
 
-
     public static final int EASY_SDK_VIDEO_FRAME_FLAG = 0x01;
     public static final int EASY_SDK_AUDIO_FRAME_FLAG = 0x02;
     public static final int EASY_SDK_EVENT_FRAME_FLAG = 0x04;
-    public static final int EASY_SDK_RTP_FRAME_FLAG = 0x08;		/* RTP帧标志 */
-    public static final int EASY_SDK_SDP_FRAME_FLAG = 0x10;		/* SDP帧标志 */
+    public static final int EASY_SDK_RTP_FRAME_FLAG = 0x08;		    /* RTP帧标志 */
+    public static final int EASY_SDK_SDP_FRAME_FLAG = 0x10;		    /* SDP帧标志 */
     public static final int EASY_SDK_MEDIA_INFO_FLAG = 0x20;		/* 媒体类型标志*/
 
-    public static final int EASY_SDK_EVENT_CODEC_ERROR = 0x63657272;	/* ERROR */
-    public static final int EASY_SDK_EVENT_CODEC_EXIT = 0x65786974;	/* EXIT */
+    public static final int EASY_SDK_EVENT_CODEC_ERROR = 0x63657272;    /* ERROR */
+    public static final int EASY_SDK_EVENT_CODEC_EXIT = 0x65786974;	    /* EXIT */
 
     public static final int TRANSTYPE_TCP = 1;
     public static final int TRANSTYPE_UDP = 2;

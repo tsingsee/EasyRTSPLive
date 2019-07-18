@@ -1,4 +1,4 @@
-package org.easydarwin.easyrtmp_rtsp;
+package org.easydarwin.easyrtsplive;
 
 import org.junit.Test;
 

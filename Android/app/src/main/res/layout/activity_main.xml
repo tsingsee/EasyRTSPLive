@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.easydarwin.easyrtmp_rtsp.MainActivity">
+    tools:context="org.easydarwin.easyrtsplive.MainActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -65,7 +65,7 @@
 
     </LinearLayout>
 
-    <org.easydarwin.easyrtmp_rtsp.StatusInfoView
+    <org.easydarwin.easyrtsplive.StatusInfoView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
