@@ -11,3 +11,5 @@
 *.tlog
 /RTMPLive/x64/Debug/*
 /RTMPLive/build/*
+/EasyRTSPLive/x64/*
+*.suo

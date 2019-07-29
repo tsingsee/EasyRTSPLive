@@ -1,4 +1,4 @@
-## EasyRTSPLive介绍 ##
+## EasyRTSPLive介绍
 
 拉流IPC摄像机或者NVR硬盘录像机RTSP流转成RTMP推送到阿里云CDN/腾讯云CDN/RTMP流媒体服务器，支持多路RTSP流同时拉取并以RTMP协议推送发布。
 
@@ -13,9 +13,26 @@
 	rtmp=rtmp://demo.easydss.com:10085/live/test2
 
 
-## 编译及运行 ##
+## 项目依赖
+
+EasyRTSPLive项目依赖3个TSINGSEE青犀开放平台的Git工程：
+
+- Include：https://github.com/tsingsee/Include
+- EasyRTSPClient：https://github.com/tsingsee/EasyRTSPClient
+- EasyRTMP：https://github.com/tsingsee/EasyRTMP
+
+目录结构为：
+
+	/
+	/Include/
+	/EasyRTSPClient/
+	/EasyRTMP/
+	/EasyRTSPLive/
+
+## 编译及运行
 
 Windows上使用Visual Studio 2010开发，当然各位可以改成自己的编译环境。
+
 Linux上编译命令如下：
 
 	清理:	./Buildit clean
@@ -24,7 +41,7 @@ Linux上编译命令如下：
 运行时将Config.ini文件放至于可执行文件相同路径下，然后直接执行可执行程序，不用带参数。
 
 
-## 获取更多信息 ##
+## 获取更多信息
 
 TSINGSEE青犀开放平台：[http://open.tsingsee.com](http://open.tsingsee.com "TSINGSEE青犀开放平台")
 
