@@ -149,7 +149,7 @@ int Easy_APICALL __RTSPSourceCallBack( int _chid, void *_chPtr, int _mediatype, 
 				avFrame.u32VFrameType = EASY_SDK_VIDEO_FRAME_I;
 				//avFrame.u32TimestampSec = frameinfo->timestamp_sec;
 				//avFrame.u32TimestampUsec = frameinfo->timestamp_usec;
-				//
+
 				iRet = EasyRTMP_SendPacket(pChannel->fPusherInfo.rtmpHandle, &avFrame);
 				if (iRet < 0)
 				{
@@ -289,6 +289,7 @@ int main(int argc, char * argv[])
 	if(iret <= 0)
 	{
 		printf("rtsp Activate error. ret=%d!!!\n", iret);
+		getchar();
 		return -2;
 	}
 
