@@ -27,11 +27,14 @@ EasyRTSPLive项目依赖3个TSINGSEE青犀开放平台的Git工程：
 - Include：https://github.com/tsingsee/Include
 - EasyRTSPClient：https://github.com/tsingsee/EasyRTSPClient
 - EasyRTMP：https://github.com/tsingsee/EasyRTMP
+- EasyAACEncoder：https://github.com/EasyDarwin/EasyAACEncoder
 
 目录结构为：
 
 	/
 	/Include/
+	/Lib/x64/
+	/Lib/x86/
 	/EasyRTSPClient/
 	/EasyRTMP/
 	/EasyRTSPLive/
