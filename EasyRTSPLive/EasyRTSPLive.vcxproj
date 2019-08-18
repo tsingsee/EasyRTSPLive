@@ -110,7 +110,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../EasyRTSPClient/Lib/x86;../../EasyRTMP/Lib/x86</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../EasyRTSPClient/Lib/x86;../../EasyRTMP/Lib/x86;../../Lib/x86</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -126,7 +126,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../EasyRTSPClient/Lib/x64;../../EasyRTMP/Lib/x64</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../EasyRTSPClient/Lib/x64;../../EasyRTMP/Lib/x64;../../Lib/x64</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -146,7 +146,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../EasyRTSPClient/Lib/x86;../../EasyRTMP/Lib/x86</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../EasyRTSPClient/Lib/x86;../../EasyRTMP/Lib/x86;../../Lib/x86</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -166,7 +166,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../EasyRTSPClient/Lib/x64;../../EasyRTMP/Lib/x64</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../EasyRTSPClient/Lib/x64;../../EasyRTMP/Lib/x64;../../Lib/x64</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

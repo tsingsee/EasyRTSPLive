@@ -14,6 +14,7 @@
 //#include <vector>
 #include <list>
 
+#include "EasyAACEncoderAPI.h"
 #include "EasyRTSPClientAPI.h"
 #include "EasyRTMPAPI.h"
 #include "ini.h"
@@ -22,12 +23,14 @@
 #ifdef _WIN32
 #pragma comment(lib,"libEasyRTSPClient.lib")
 #pragma comment(lib,"libeasyrtmp.lib")
+#pragma comment(lib,"libEasyAACEncoder.lib")
+
 #endif
 
 #define MAX_RTMP_URL_LEN 256
 
 #ifdef _WIN32
-#define KEY "79736C36655969576B5A734154526C646F7561797065394659584E35556C525455457870646D55755A58686C4B56634D5671442F706634675A57467A65513D3D"
+#define KEY "79397037795969576B5A73416C5668646F7164717065394659584E35556C525455457870646D55755A58686C4B56634D5671442F7065424859585A7062695A4359574A76633246414D6A41784E6B566863336C4559584A33615735555A5746745A57467A65513D3D"
 #define RTSP_KEY "6D75724D7A4969576B5A7341717A4E646F7378557065394659584E35556C525455457870646D55755A58686C4931634D5671442F7065424859585A7062695A4359574A76633246414D6A41784E6B566863336C4559584A33615735555A5746745A57467A65513D3D"
 #else // linux
 #define KEY "79736C36655A4F576B596F4154526C646F75617970664E6C59584E35636E527A63477870646D556A567778576F502B6C2F69426C59584E35"
@@ -51,10 +54,13 @@ typedef struct _channel_cfg_struct_t
 
 typedef struct _rtmp_pusher_struct_t
 {
+	Easy_Handle aacEncHandle;
 	Easy_Handle rtmpHandle;
 	unsigned int u32AudioCodec;	
 	unsigned int u32AudioSamplerate;
 	unsigned int u32AudioChannel;
+	unsigned char* pAACCacheBuffer;
+
 }_rtmp_pusher;
 
 typedef struct _channel_info_struct_t
@@ -132,7 +138,10 @@ int Easy_APICALL __RTSPSourceCallBack( int _chid, void *_chPtr, int _mediatype, 
 					EASY_MEDIA_INFO_T mediaInfo;
 					memset(&mediaInfo, 0, sizeof(EASY_MEDIA_INFO_T));
 					mediaInfo.u32VideoFps = pChannel->fMediainfo.u32VideoFps;
-					mediaInfo.u32AudioSamplerate = 8000;
+					mediaInfo.u32AudioSamplerate =pChannel->fMediainfo.u32AudioSamplerate ;		/* 音频采样率 */
+					mediaInfo.u32AudioChannel = pChannel->fMediainfo.u32AudioChannel;			/* 音频通道数 */
+					mediaInfo.u32AudioBitsPerSample = pChannel->fMediainfo.u32AudioBitsPerSample;		/* 音频采样精度 */
+
 
 					iRet = EasyRTMP_InitMetadata(pChannel->fPusherInfo.rtmpHandle, &mediaInfo, 1024);
 					if (iRet < 0)
@@ -191,6 +200,94 @@ int Easy_APICALL __RTSPSourceCallBack( int _chid, void *_chPtr, int _mediatype, 
 				}
 			}				
 		}	
+	}
+	if (_mediatype == EASY_SDK_AUDIO_FRAME_FLAG)
+	{
+		/* 音频编码 */
+// #define EASY_SDK_AUDIO_CODEC_AAC	0x15002		/* AAC */
+// #define EASY_SDK_AUDIO_CODEC_G711U	0x10006		/* G711 ulaw*/
+// #define EASY_SDK_AUDIO_CODEC_G711A	0x10007		/* G711 alaw*/
+// #define EASY_SDK_AUDIO_CODEC_G726	0x1100B		/* G726 */
+		
+		unsigned char* pSendBuffer = NULL;
+		int nSendBufferLen = 0;
+		if (frameinfo->codec == EASY_SDK_AUDIO_CODEC_AAC)
+		{
+			pSendBuffer =  (unsigned char*)pbuf;
+			nSendBufferLen = frameinfo->length;
+		} 
+		else
+		{
+			// 音频转码 [8/17/2019 SwordTwelve]
+			int bits_per_sample = frameinfo->bits_per_sample;
+			int channels = frameinfo->channels;
+			int sampleRate = frameinfo->sample_rate;
+
+			if (EASY_SDK_AUDIO_CODEC_G711U   ==  frameinfo->codec
+				|| EASY_SDK_AUDIO_CODEC_G726  ==  frameinfo->codec 
+				|| EASY_SDK_AUDIO_CODEC_G711A == frameinfo->codec ) 
+			{
+				if (pChannel->fPusherInfo.pAACCacheBuffer == NULL)
+				{
+					int buf_size = BUFFER_SIZE;
+					pChannel->fPusherInfo.pAACCacheBuffer  = new unsigned char[buf_size];
+					memset(pChannel->fPusherInfo.pAACCacheBuffer , 0x00, buf_size);
+				}
+
+				if (pChannel->fPusherInfo.aacEncHandle == NULL)
+				{
+					InitParam initParam;
+					initParam.u32AudioSamplerate=frameinfo->sample_rate;
+					initParam.ucAudioChannel=frameinfo->channels;
+					initParam.u32PCMBitSize=frameinfo->bits_per_sample;
+					if (frameinfo->codec == EASY_SDK_AUDIO_CODEC_G711U)
+					{
+						initParam.ucAudioCodec = Law_ULaw;
+					} 
+					else if (frameinfo->codec == EASY_SDK_AUDIO_CODEC_G726)
+					{
+						initParam.ucAudioCodec = Law_G726;
+					}
+					else if (frameinfo->codec == EASY_SDK_AUDIO_CODEC_G711A)
+					{
+						initParam.ucAudioCodec = Law_ALaw;
+					}
+					pChannel->fPusherInfo.aacEncHandle = Easy_AACEncoder_Init( initParam);
+				}
+				unsigned int out_len = 0;
+				int nRet = Easy_AACEncoder_Encode(pChannel->fPusherInfo.aacEncHandle, 
+					(unsigned char*)pbuf, frameinfo->length, (unsigned char*)pChannel->fPusherInfo.pAACCacheBuffer, &out_len) ;
+				if (nRet>0&&out_len>0)
+				{
+					pSendBuffer = (byte*)pChannel->fPusherInfo.pAACCacheBuffer ;
+					nSendBufferLen = out_len;
+					frameinfo->codec = EASY_SDK_AUDIO_CODEC_AAC;
+				} 
+			}
+		}
+
+		if(pChannel->fPusherInfo.rtmpHandle&&pSendBuffer&&nSendBufferLen>0)
+		{
+			EASY_AV_Frame avFrame;
+			memset(&avFrame, 0, sizeof(EASY_AV_Frame));
+			avFrame.u32AVFrameFlag = EASY_SDK_AUDIO_FRAME_FLAG;
+			avFrame.u32AVFrameLen = nSendBufferLen;
+			avFrame.pBuffer = (unsigned char*)pSendBuffer;
+			//avFrame.u32TimestampSec = frameinfo->timestamp_sec;
+			//avFrame.u32TimestampUsec = frameinfo->timestamp_usec;
+			iRet = EasyRTMP_SendPacket(pChannel->fPusherInfo.rtmpHandle, &avFrame);
+			if (iRet < 0)
+			{
+				TRACE_LOG(pChannel->fLogHandle, "Fail to Send AAC Packet ...\n");
+			}
+			else
+			{
+				if(!pChannel->fHavePrintKeyInfo)
+				{
+					TRACE_LOG(pChannel->fLogHandle, "Audio\n");
+				}
+			}
+		}
 	}
 	else if (_mediatype == EASY_SDK_MEDIA_INFO_FLAG)
 	{
@@ -256,6 +353,16 @@ void ReleaseSpace(void)
 		{
 			TRACE_CloseLogFile(pChannel->fLogHandle);
 			pChannel->fLogHandle = NULL;
+		}
+		if (pChannel->fPusherInfo.aacEncHandle )
+		{
+			Easy_AACEncoder_Release(pChannel->fPusherInfo.aacEncHandle );
+			pChannel->fPusherInfo.aacEncHandle  = NULL;
+		}
+		if (pChannel->fPusherInfo.pAACCacheBuffer )
+		{
+			delete[] pChannel->fPusherInfo.pAACCacheBuffer;
+			pChannel->fPusherInfo.pAACCacheBuffer = NULL;
 		}
 
 		delete pChannel;
