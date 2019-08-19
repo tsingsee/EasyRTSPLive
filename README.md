@@ -33,10 +33,9 @@ EasyRTSPLive项目依赖3个TSINGSEE青犀开放平台的Git工程：
 
 	/
 	/Include/
-	/Lib/x64/
-	/Lib/x86/
 	/EasyRTSPClient/
 	/EasyRTMP/
+	/EasyAACEncoder/
 	/EasyRTSPLive/
 
 ### Windows & Linux（ARM）编译
@@ -65,5 +64,7 @@ Linux上编译命令如下：
 ## 获取更多信息
 
 TSINGSEE青犀开放平台：[http://open.tsingsee.com](http://open.tsingsee.com "TSINGSEE青犀开放平台")
+
+![TSINGSEE青犀开放平台](https://github.com/tsingsee/images/blob/master/TSINGSEE/singsee_qrcode_160.jpg?raw=true)
 
 Copyright &copy; TSINGSEE.com 2012~2019
