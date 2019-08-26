@@ -27,8 +27,6 @@
 
 #endif
 
-#define MAX_RTMP_URL_LEN 256
-
 #ifdef _WIN32
 #define RTMP_KEY "79736C36655969576B5A734154526C646F7561797065394659584E35556C525455457870646D55755A58686C766C634D5671442F706634675A57467A65513D3D"
 #define RTSP_KEY "6D75724D7A4969576B5A734154526C646F7561797065394659584E35556C525455457870646D55755A58686C4931634D5671442F706634675A57467A65513D3D"
@@ -39,9 +37,10 @@
 
 #define BUFFER_SIZE  1024*1024
 
-#define MAX_CHANNEL_INDEX 16	//user defined Channel number
+//用户可自定义的RTSP转RTMP拉流转推流路数,官方工具版默认1路拉转推，用户可通过代码定制多路RTSP转RTMP
+#define MAX_CHANNEL_INDEX 1
 
-#define CONF_FILE_PATH  "Config.ini"  
+#define CONF_FILE_PATH  "easyrtsplive.ini"  
 
 typedef struct _channel_cfg_struct_t
 {
@@ -60,7 +59,6 @@ typedef struct _rtmp_pusher_struct_t
 	unsigned int u32AudioSamplerate;
 	unsigned int u32AudioChannel;
 	unsigned char* pAACCacheBuffer;
-
 }_rtmp_pusher;
 
 typedef struct _channel_info_struct_t
@@ -138,8 +136,8 @@ int Easy_APICALL __RTSPSourceCallBack( int _chid, void *_chPtr, int _mediatype, 
 					EASY_MEDIA_INFO_T mediaInfo;
 					memset(&mediaInfo, 0, sizeof(EASY_MEDIA_INFO_T));
 					mediaInfo.u32VideoFps = pChannel->fMediainfo.u32VideoFps;
-					mediaInfo.u32AudioSamplerate =pChannel->fMediainfo.u32AudioSamplerate ;		/* 音频采样率 */
-					mediaInfo.u32AudioChannel = pChannel->fMediainfo.u32AudioChannel;			/* 音频通道数 */
+					mediaInfo.u32AudioSamplerate =pChannel->fMediainfo.u32AudioSamplerate ;				/* 音频采样率 */
+					mediaInfo.u32AudioChannel = pChannel->fMediainfo.u32AudioChannel;					/* 音频通道数 */
 					mediaInfo.u32AudioBitsPerSample = pChannel->fMediainfo.u32AudioBitsPerSample;		/* 音频采样精度 */
 
 
@@ -204,10 +202,10 @@ int Easy_APICALL __RTSPSourceCallBack( int _chid, void *_chPtr, int _mediatype, 
 	if (_mediatype == EASY_SDK_AUDIO_FRAME_FLAG)
 	{
 		/* 音频编码 */
-// #define EASY_SDK_AUDIO_CODEC_AAC	0x15002		/* AAC */
-// #define EASY_SDK_AUDIO_CODEC_G711U	0x10006		/* G711 ulaw*/
-// #define EASY_SDK_AUDIO_CODEC_G711A	0x10007		/* G711 alaw*/
-// #define EASY_SDK_AUDIO_CODEC_G726	0x1100B		/* G726 */
+		// #define EASY_SDK_AUDIO_CODEC_AAC	0x15002			/* AAC */
+		// #define EASY_SDK_AUDIO_CODEC_G711U	0x10006		/* G711 ulaw*/
+		// #define EASY_SDK_AUDIO_CODEC_G711A	0x10007		/* G711 alaw*/
+		// #define EASY_SDK_AUDIO_CODEC_G726	0x1100B		/* G726 */
 		
 		unsigned char* pSendBuffer = NULL;
 		int nSendBufferLen = 0;
@@ -373,6 +371,20 @@ void ReleaseSpace(void)
 
 int main(int argc, char * argv[])
 {
+	printf("\n\n");
+	printf("****************************************************************\n");
+	printf("********************EasyRTSPLive工具版(免费)********************\n");
+	printf("******工具版主要用于开发者调试与测试，只支持一路RTSP转RTMP******\n");
+	printf("******EasyRTSPLive工具版由open.tsingsee.com青犀开放平台提供*****\n");
+	printf("****************************************************************\n");
+	
+	//splash
+#ifdef _WIN32
+		Sleep(3000);
+#else
+		sleep(3);
+#endif
+
 	InitCfgInfo();
 
 	int iret = 0;
