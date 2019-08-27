@@ -3,16 +3,13 @@
     <type>org.netbeans.modules.cnd.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>RTMPlIVE</name>
+            <name>EasyRTSPLive</name>
             <c-extensions/>
             <cpp-extensions>cpp</cpp-extensions>
             <header-extensions>h</header-extensions>
             <sourceEncoding>UTF-8</sourceEncoding>
             <make-dep-projects/>
-            <sourceRootList>
-                <sourceRootElem>/mnt/hgfs/E/04GitExtension/EasyRTMP/EasyRTMP_Demo/EasyRTMP_RTSP</sourceRootElem>
-                <sourceRootElem>/mnt/hgfs/E/04GitExtension/EasyRTMP/EasyRTMP_Demo/EasyRTMP_RTSP</sourceRootElem>
-            </sourceRootList>
+            <sourceRootList/>
             <confList>
                 <confElem>
                     <name>x64</name>

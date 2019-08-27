@@ -35,10 +35,6 @@
     <itemPath>trace.cpp</itemPath>
     <itemPath>trace.h</itemPath>
   </logicalFolder>
-  <sourceRootList>
-    <Elem>/mnt/hgfs/E/04GitExtension/EasyRTMP/EasyRTMP_Demo/EasyRTMP_RTSP</Elem>
-    <Elem>/mnt/hgfs/E/04GitExtension/EasyRTMP/EasyRTMP_Demo/EasyRTMP_RTSP</Elem>
-  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="x64" type="1">
@@ -51,25 +47,29 @@
         <cTool>
           <developmentMode>5</developmentMode>
           <incDir>
-            <pElem>libEasyRTSPClient/Include</pElem>
-            <pElem>../Include</pElem>
+            <pElem>../../Include</pElem>
+            <pElem>../../EasyAACEncoder/Include</pElem>
+            <pElem>../../easyrtmp/Include</pElem>
+            <pElem>../../EasyRTSPClient/Include</pElem>
           </incDir>
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
           <incDir>
-            <pElem>libEasyRTSPClient/Include</pElem>
-            <pElem>../Include</pElem>
+            <pElem>../../Include</pElem>
+            <pElem>../../EasyAACEncoder/Include</pElem>
+            <pElem>../../easyrtmp/Include</pElem>
+            <pElem>../../EasyRTSPClient/Include</pElem>
           </incDir>
         </ccTool>
         <linkerTool>
-          <output>${CND_CONF}/rtmplive</output>
+          <output>${CND_CONF}/EasyRTSPLive</output>
           <linkerAddLib>
-            <pElem>../Lib/${CND_CONF}</pElem>
-            <pElem>libEasyRTSPClient/Lib/${CND_CONF}</pElem>
-            <pElem>../Lib/EasyAACEncoder/${CND_CONF}</pElem>
+            <pElem>../../easyrtmp/Lib/${CND_CONF}</pElem>
+            <pElem>../../EasyRTSPClient/Lib/${CND_CONF}</pElem>
+            <pElem>../../EasyAACEncoder/Lib/${CND_CONF}</pElem>
           </linkerAddLib>
-          <commandLine>-leasyrtmp -leasyrtspclient -leasyaacencoder -pthread -lrt</commandLine>
+          <commandLine>-pthread -lrt -leasyrtmp -leasyrtspclient -leasyaacencoder</commandLine>
         </linkerTool>
       </compileType>
       <item path="ini.cpp" ex="false" tool="1" flavor2="0">
@@ -93,28 +93,31 @@
         <cTool>
           <developmentMode>5</developmentMode>
           <incDir>
-            <pElem>libEasyRTSPClient/Include</pElem>
-            <pElem>../Include</pElem>
+            <pElem>../../Include</pElem>
+            <pElem>../../EasyAACEncoder/Include</pElem>
+            <pElem>../../easyrtmp/Include</pElem>
+            <pElem>../../EasyRTSPClient/Include</pElem>
           </incDir>
           <commandLine>-m32</commandLine>
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
           <incDir>
-            <pElem>libEasyRTSPClient/Include</pElem>
-            <pElem>../Include</pElem>
+            <pElem>../../Include</pElem>
+            <pElem>../../EasyAACEncoder/Include</pElem>
+            <pElem>../../easyrtmp/Include</pElem>
+            <pElem>../../EasyRTSPClient/Include</pElem>
           </incDir>
           <commandLine>-m32</commandLine>
         </ccTool>
         <linkerTool>
-          <output>${CND_CONF}/rtmplive</output>
+          <output>${CND_CONF}/EasyRTSPLive</output>
           <linkerAddLib>
-            <pElem>/usr/lib/i386-linux-gnu</pElem>
-            <pElem>../Lib/${CND_CONF}</pElem>
-            <pElem>libEasyRTSPClient/Lib/${CND_CONF}</pElem>
-            <pElem>../Lib/EasyAACEncoder/${CND_CONF}</pElem>
+            <pElem>../../easyrtmp/Lib/${CND_CONF}</pElem>
+            <pElem>../../EasyRTSPClient/Lib/${CND_CONF}</pElem>
+            <pElem>../../EasyAACEncoder/Lib/${CND_CONF}</pElem>
           </linkerAddLib>
-          <commandLine>-leasyrtmp -leasyrtspclient -leasyaacencoder -pthread -lrt</commandLine>
+          <commandLine>-m elf_i386 -pthread -lrt</commandLine>
         </linkerTool>
       </compileType>
       <item path="ini.cpp" ex="false" tool="1" flavor2="0">

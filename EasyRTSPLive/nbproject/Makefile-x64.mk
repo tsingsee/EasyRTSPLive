@@ -54,39 +54,30 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-L../../EasyRTMP/Lib/${CND_CONF} \
-              -L../../EasyRTSPClient/Lib/${CND_CONF} \
-	      -L../../EasyAACEncoder/Lib/${CND_CONF}
+LDLIBSOPTIONS=-L../../easyrtmp/Lib/${CND_CONF} -L../../EasyRTSPClient/Lib/${CND_CONF} -L../../EasyAACEncoder/Lib/${CND_CONF}
 
-#include
-
-INCLUDE = -I../../Include \
-          -I../../EasyRTSPClient/Include \
-	  -I../../EasyRTMP/Include \
-	  -I../../EasyAACEncoder/Include
-	  
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_CONF}/easyrtsplive
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_CONF}/EasyRTSPLive
 
-${CND_CONF}/easyrtsplive: ${OBJECTFILES}
+${CND_CONF}/EasyRTSPLive: ${OBJECTFILES}
 	${MKDIR} -p ${CND_CONF}
-	${LINK.cc} -o ${CND_CONF}/easyrtsplive ${OBJECTFILES} ${LDLIBSOPTIONS} -leasyrtmp -leasyrtspclient -leasyaacencoder -lpthread -lrt
+	${LINK.cc} -o ${CND_CONF}/EasyRTSPLive ${OBJECTFILES} ${LDLIBSOPTIONS} -pthread -lrt -leasyrtmp -leasyrtspclient -leasyaacencoder
 
 ${OBJECTDIR}/ini.o: ini.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 ${INCLUDE} -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ini.o ini.cpp
+	$(COMPILE.cc) -O2 -I../../Include -I../../EasyAACEncoder/Include -I../../easyrtmp/Include -I../../EasyRTSPClient/Include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ini.o ini.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 ${INCLUDE} -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -O2 -I../../Include -I../../EasyAACEncoder/Include -I../../easyrtmp/Include -I../../EasyRTSPClient/Include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 ${OBJECTDIR}/trace.o: trace.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 ${INCLUDE} -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/trace.o trace.cpp
+	$(COMPILE.cc) -O2 -I../../Include -I../../EasyAACEncoder/Include -I../../easyrtmp/Include -I../../EasyRTSPClient/Include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/trace.o trace.cpp
 
 # Subprojects
 .build-subprojects:
