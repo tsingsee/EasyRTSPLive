@@ -67,4 +67,4 @@ TSINGSEE青犀开放平台：[http://open.tsingsee.com](http://open.tsingsee.com
 
 ![TSINGSEE青犀开放平台](https://github.com/tsingsee/images/blob/master/TSINGSEE/singsee_qrcode_160.jpg?raw=true)
 
-Copyright &copy; TSINGSEE.com 2012~2019
+Copyright &copy; TSINGSEE.com 2012~2020
