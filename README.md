@@ -56,7 +56,7 @@ Linux上编译命令如下：
 
  EasyRTSPLive也提供了Android安卓版本，项目地址：[https://github.com/tsingsee/EasyRTSPLive-Android](https://github.com/tsingsee/EasyRTSPLive-Android "EasyRTSPLive-Android")
 
-[https://fir.im/EasyRTSPLive](https://fir.im/EasyRTSPLive "EasyRTSPLive-Android")
+[http://d.7short.com/EasyRTSPLive](http://d.7short.com/EasyRTSPLive "EasyRTSPLive-Android")
 
 ![EasyRTSPLive-Android](https://github.com/tsingsee/images/blob/master/EasyRTSPLive/fir.easyrtsplive.android.png?raw=true)
 

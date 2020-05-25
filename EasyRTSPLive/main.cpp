@@ -38,7 +38,7 @@
 #define BUFFER_SIZE  1024*1024
 
 //用户可自定义的RTSP转RTMP拉流转推流路数,官方工具版默认1路拉转推，用户可通过代码定制多路RTSP转RTMP
-#define MAX_CHANNEL_INDEX 10
+#define MAX_CHANNEL_INDEX 99
 
 #define CONF_FILE_PATH  "easyrtsplive.ini"  
 

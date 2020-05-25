@@ -67,17 +67,17 @@ ${CND_CONF}/EasyRTSPLive: ${OBJECTFILES}
 ${OBJECTDIR}/ini.o: ini.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I../../Include -I../../EasyAACEncoder/Include -I../../easyrtmp/Include -I../../EasyRTSPClient/Include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ini.o ini.cpp
+	$(COMPILE.cc) -O2 -I../../Include -I../../EasyAACEncoder/Include -I../../EasyRTMP/Include -I../../EasyRTSPClient/Include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ini.o ini.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I../../Include -I../../EasyAACEncoder/Include -I../../easyrtmp/Include -I../../EasyRTSPClient/Include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -O2 -I../../Include -I../../EasyAACEncoder/Include -I../../EasyRTMP/Include -I../../EasyRTSPClient/Include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 ${OBJECTDIR}/trace.o: trace.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I../../Include -I../../EasyAACEncoder/Include -I../../easyrtmp/Include -I../../EasyRTSPClient/Include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/trace.o trace.cpp
+	$(COMPILE.cc) -O2 -I../../Include -I../../EasyAACEncoder/Include -I../../EasyRTMP/Include -I../../EasyRTSPClient/Include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/trace.o trace.cpp
 
 # Subprojects
 .build-subprojects:
